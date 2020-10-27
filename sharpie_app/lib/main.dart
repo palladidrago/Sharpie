@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:sharpie_app/screens/intro/first.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -10,9 +10,9 @@ class MyApp extends StatelessWidget {
       home : Scaffold (
         appBar : AppBar(
           title: Text("Sharp"),
-        ),
+            ),
         body: Center(
-          child: Text("Hello Word", style: TextStyle(color: Colors.red[200]),),
+          child: Text("Hello Word", style: TextStyle(color: Colors.blue[200]),),
           ),
         ),
       );
