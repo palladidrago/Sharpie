@@ -7,4 +7,7 @@ your own api and database management.
 
 # From DOM
 The DOM Company always does its' best to deliver the most wortwhile products, with passion and direction.
-We promise to never disappoint
+We promise to never disappoint our customers and users.
+
+## On a more serious note
+The app is in the very early stages of development, we literally only have the idea for now. Hopefully this project is not beyond our means.
