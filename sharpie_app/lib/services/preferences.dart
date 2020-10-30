@@ -3,15 +3,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 
 //Returns if it's the first time the app is being used.
-//it has to return Future<bool> because it uses async and SharedPreferences needs async. Idk how to use that future
-//later.
-//Todo: put this function inside a class and figure out how to return a proper bool
+//it has to return Future<bool> because it uses async and SharedPreferences needs async.
+//Todo: put this function inside a class 
 
-Future<bool> isFirst() async 
-{
-  SharedPreferences  _prefs = await SharedPreferences.getInstance(); 
-  bool isFirst = _prefs.getBool("firstrun") ?? true;
-  return isFirst == null;
+class Preferences{
+  Future<bool> isFirst() async 
+  {
+    //Returs if this is the first run of the app.
+    SharedPreferences  _prefs = await SharedPreferences.getInstance(); 
+    bool isFirst = _prefs.getBool("fr") == null;
+    _prefs.setBool("fr",false);
+    return isFirst ;
 
+  }
 }
-
