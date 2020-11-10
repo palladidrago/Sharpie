@@ -5,8 +5,9 @@
 * Home screen: 3 tabs: one for subjects, one for work to do, one for(??).
 * Individual subject screen(with tests and assignments).
 * Settings screen, to change preferences.
-* Implement database with Firestore.
-
+* Implement database with Firestore. (Probably Mayar)
+* Mashov integration with dart mashov_api --> Average of grades on a test.
+* art-yeshiva integration with rss feed.
 * Learn more about Flutter.
 
 # Distant future
