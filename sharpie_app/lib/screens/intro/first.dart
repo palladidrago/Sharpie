@@ -1,16 +1,34 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
-//Add here the class that returns the first page
-
-
-//Switch to english prompt
-//Hi,(blah blah)
-//What's your name
-
-//Ideas for continue button 
-//1. Directly leads to second.dart 
-
-//2.We make a wrapper and this class calls back to the wrapper and tells it the continue button has been pressed
-//and the wrapper goes to page 2
+class FirstPage extends StatelessWidget {
+  String name = "bro";
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Sharpie",
+      home: Scaffold(
+        body: Container(
+          child: Stack(
+            children: [
+              Container(
+                child: Center(
+                  child: Text(
+                    "Hi $name",
+                    style: TextStyle(/*style this shit*/),
+                  ),
+                ),
+              ),
+              Container(
+                child: Text(
+                  "Hi $name",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(/*style this shit*/),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
