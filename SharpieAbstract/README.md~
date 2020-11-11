@@ -2,7 +2,7 @@
 * Decide file structure, figure out intro screen wrapper.
 * Introduction screen.(Davido-Part 1)
 * Optional subjects selection screen+save to phone storage(With preferences api)
-* Home screen: 3 tabs: one for subjects, one for work to do, one for(??).(OrShazam)
+* Home screen: 3 tabs: one for subjects, one for work to do, one for(??).
 * Individual subject screen(with tests and assignments).
 * Settings screen, to change preferences.
 * Implement database with Firestore. (Probably Mayar)
