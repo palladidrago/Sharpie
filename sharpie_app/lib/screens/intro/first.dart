@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+void main() => runApp(FirstPage());
+
 class FirstPage extends StatelessWidget {
-  String name = "student";
+  final String name = "student";
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -11,6 +13,9 @@ class FirstPage extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Container(
+                child: MyCustomForm(),
+              ),
+              Container(
                 child: Center(
                   child: Text(
                     "Hi $name",
@@ -19,15 +24,12 @@ class FirstPage extends StatelessWidget {
                 ),
               ),
               Container(
+                alignment: Alignment.bottomRight,
                 child: Text(
                   "Hi $name",
-                  textAlign: TextAlign.left,
                   style: TextStyle(/*style this shit*/),
                 ),
               ),
-              Container(
-                child: MyCustomForm(),
-              )
             ],
           ),
         ),
@@ -72,7 +74,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: Text('fuck me'),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
