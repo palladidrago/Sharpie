@@ -14,4 +14,14 @@ class Preferences {
     _prefs.setBool("fr", false);
     return isFirst;
   }
+
+  static void setName(String name) async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setString("Name", name);
+  }
+
+  static Future<String> getName() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    return _prefs.getString("Name");
+  }
 }
