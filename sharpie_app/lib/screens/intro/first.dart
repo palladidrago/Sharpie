@@ -25,6 +25,9 @@ class FirstPage extends StatelessWidget {
                   style: TextStyle(/*style this shit*/),
                 ),
               ),
+              Container(
+                child: MyCustomForm(),
+              )
             ],
           ),
         ),
