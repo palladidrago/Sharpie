@@ -10,6 +10,9 @@ class FirstPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Sharpie",
+      theme: ThemeData(
+        fontFamily: "Josefin",
+      ),
       // Set Work as the default app font.
       home: Scaffold(
         body: Container(
@@ -106,6 +109,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
               "Hi $input",
               style: TextStyle(
                 color: Colors.blue,
+                fontSize: 20.0,
+                // fontFamily: "Josefin",
               ),
             ),
           ],
