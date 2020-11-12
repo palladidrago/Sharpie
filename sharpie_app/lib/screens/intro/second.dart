@@ -1,15 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sharpie_app/services/preferences.dart';
 
 void main() async => runApp(new SecondPage());
 
-class SecondPage extends StatefulWidget {
+class SecondPage extends StatelessWidget {
   @override
-  _SecondPageState createState() => _SecondPageState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: GetName(),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
 
-class _SecondPageState extends State<SecondPage> {
+class GetName extends StatefulWidget {
+  @override
+  _GetNameState createState() => _GetNameState();
+}
+
+class _GetNameState extends State<GetName> {
   Future<String> _getName;
 
   @override
@@ -30,18 +49,7 @@ class _SecondPageState extends State<SecondPage> {
           }
 
           final name = snapshot.data.toString();
-          return Scaffold(
-            body: SafeArea(
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Text("Hello $name"),
-                  )
-                ],
-              ),
-            ),
-          );
+          return Text("Hello $name");
         });
   }
 }
