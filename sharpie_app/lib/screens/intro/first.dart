@@ -4,32 +4,6 @@ import 'package:sharpie_app/screens/intro/second.dart';
 
 void main() => runApp(FirstPage());
 
-class LangBtn extends StatefulWidget {
-  @override
-  _LangBtnState createState() => _LangBtnState();
-}
-
-class _LangBtnState extends State<LangBtn> {
-  String altLanguage = "עברית";
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton.extended(
-      label: Text(altLanguage),
-      backgroundColor: Colors.blue[300],
-      foregroundColor: Colors.black,
-      onPressed: () {
-        setState(() {
-          if (altLanguage != "עברית") {
-            altLanguage = "עברית";
-          } else {
-            altLanguage = "English";
-          }
-        });
-      },
-    );
-  }
-}
-
 class FirstPage extends StatelessWidget {
   // static String name = "students";
   @override
@@ -59,6 +33,32 @@ class FirstPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class LangBtn extends StatefulWidget {
+  @override
+  _LangBtnState createState() => _LangBtnState();
+}
+
+class _LangBtnState extends State<LangBtn> {
+  String altLanguage = "עברית";
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton.extended(
+      label: Text(altLanguage),
+      backgroundColor: Colors.blue[300],
+      foregroundColor: Colors.black,
+      onPressed: () {
+        setState(() {
+          if (altLanguage != "עברית") {
+            altLanguage = "עברית";
+          } else {
+            altLanguage = "English";
+          }
+        });
+      },
     );
   }
 }

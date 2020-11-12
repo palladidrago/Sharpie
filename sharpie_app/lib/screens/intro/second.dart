@@ -7,6 +7,10 @@ class SecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        fontFamily: "Josefin",
+        scaffoldBackgroundColor: Colors.blue[300],
+      ),
       home: Scaffold(
         body: SafeArea(
           child: Column(
