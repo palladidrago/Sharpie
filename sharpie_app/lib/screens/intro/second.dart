@@ -2,28 +2,46 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharpie_app/services/preferences.dart';
 
-SharedPreferences sp;
+void main() async => runApp(new SecondPage());
 
-void main() async {
-  runApp(new MyWidget());
+class SecondPage extends StatefulWidget {
+  @override
+  _SecondPageState createState() => _SecondPageState();
 }
 
-class MyWidget extends StatelessWidget {
-  final String title = "fuck me";
+class _SecondPageState extends State<SecondPage> {
+  Future<String> _getName;
+
+  @override
+  void initState() {
+    _getName = SharedPreferences.getInstance()
+        .then((prefs) => prefs.getString("Name"));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-        ),
-        body: Center(
-          child: Text(sp.getString("key")),
-        ),
-      ),
-    );
+    return FutureBuilder(
+        future: _getName,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState != ConnectionState.done) {
+            // The value is not read yet
+            return Text("Loading username...");
+          }
+
+          final name = snapshot.data.toString();
+          return Scaffold(
+            body: SafeArea(
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: Text("Hello $name"),
+                  )
+                ],
+              ),
+            ),
+          );
+        });
   }
 }
-//Add here the class that returns the second page, with the choice for subjects.

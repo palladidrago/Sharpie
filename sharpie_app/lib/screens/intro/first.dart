@@ -78,11 +78,6 @@ class _NameForm extends State<NameForm> {
   final myController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   void dispose() {
     // Clean up the controller when the widget is removed from the widget tree.
     // This also removes the _printLatestValue listener.
@@ -110,7 +105,7 @@ class _NameForm extends State<NameForm> {
             TextFormField(
               controller: myController,
               decoration: InputDecoration(
-                labelText: "What's your name?",
+                labelText: "Name",
                 labelStyle: TextStyle(
                   color: Colors.white,
                 ),
@@ -138,7 +133,7 @@ class _NameForm extends State<NameForm> {
 
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MyWidget()),
+                    MaterialPageRoute(builder: (context) => SecondPage()),
                   );
                 }
               },

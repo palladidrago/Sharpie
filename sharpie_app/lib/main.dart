@@ -6,7 +6,7 @@ void main() async {
   runApp(MyApp());
   //Added check to main to see if the isFirst() function works. This returns the text "Instance of Future<bool>"
   //which is a problem because i just want to know the value of the bool.
-  Preferences _prefs = new Preferences();
+  final _prefs = Preferences.instance;
   bool iF = await _prefs.isFirst();
   print(iF);
 }
