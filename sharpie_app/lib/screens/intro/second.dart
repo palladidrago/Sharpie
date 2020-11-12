@@ -9,7 +9,7 @@ class SecondPage extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         fontFamily: "Josefin",
-        scaffoldBackgroundColor: Colors.blue[200],
+        scaffoldBackgroundColor: Colors.blue[300],
       ),
       home: Scaffold(
         body: SafeArea(
