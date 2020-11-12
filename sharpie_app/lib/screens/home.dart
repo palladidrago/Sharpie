@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+//Actual home page.
+//What is the layout for this page?
 
 class HomePage extends StatelessWidget {
   @override
@@ -7,4 +8,3 @@ class HomePage extends StatelessWidget {
       return Image(image: AssetImage('graphics/background.png'));
     }
 }
-//The home lives here

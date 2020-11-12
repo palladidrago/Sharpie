@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sharpie_app/services/preferences.dart';
 import 'package:sharpie_app/screens/intro/second.dart';
+import 'package:sharpie_app/services/assets.dart';
 
 void main() => runApp(FirstPage());
 
 class FirstPage extends StatelessWidget {
-  // static String name = "students";
   @override
+  //Is the main "Wrapper" for the first page
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Sharpie",
@@ -14,20 +15,23 @@ class FirstPage extends StatelessWidget {
         fontFamily: "Josefin",
         scaffoldBackgroundColor: Colors.red[300],
       ),
-      // Set Work as the default app font.
       home: Scaffold(
         body: SafeArea(
-          child: Stack(
+          child: Stack( //There's probably a better way to do this then Scaffold<SafeArea<Stack
             children: <Widget>[
               Container(
                 child: NameForm(),
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Container(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Container(
                   alignment: Alignment.topLeft,
                   child: LangBtn(),
                 ),
+              ),
+                Padding(
+                  padding: const EdgeInsets.all( 100.0),
+                  child: Image(height:190,image: AssetImage(Images.logoTLoc)),
               ),
             ],
           ),
@@ -43,6 +47,7 @@ class LangBtn extends StatefulWidget {
 }
 
 class _LangBtnState extends State<LangBtn> {
+  //Is the button for english and hebrew.
   String altLanguage = "עברית";
   @override
   Widget build(BuildContext context) {
@@ -69,23 +74,23 @@ class NameForm extends StatefulWidget {
   _NameForm createState() => _NameForm();
 }
 
-// Define a corresponding State class.
-// This class holds data related to the Form.
 class _NameForm extends State<NameForm> {
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
-  String input = "";
+  //What does the controller do?
+  String input = ""; //The input will be changed later, we need it like this at the beginning
   final myController = TextEditingController();
 
   @override
   void dispose() {
     // Clean up the controller when the widget is removed from the widget tree.
-    // This also removes the _printLatestValue listener.
+    //Useful?
     myController.dispose();
     super.dispose();
   }
 
   String hiText(String text) {
+    //Returns the text to display after the form.
     if (text == "") {
       return "student";
     } else {
@@ -100,9 +105,10 @@ class _NameForm extends State<NameForm> {
         padding: const EdgeInsets.all(30.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center, //Centers the form
           children: <Widget>[
             TextFormField(
+              //Is the form
               controller: myController,
               decoration: InputDecoration(
                 labelText: "Name",
@@ -117,14 +123,17 @@ class _NameForm extends State<NameForm> {
               ),
               onChanged: (String value) {
                 setState(() {
+                  //On changed, reset the state of the widget with input = value.
                   input = value;
                 });
               },
             ),
             SizedBox(
+              //Padding
               height: 8,
             ),
             RaisedButton(
+              //Submit button.
               onPressed: () async {
                 if (input != "") {
                   Preferences.setName(input);
@@ -141,9 +150,11 @@ class _NameForm extends State<NameForm> {
               elevation: 8,
             ),
             SizedBox(
+              //Padding
               height: 20,
             ),
             Text(
+              //Text, displays the name of the student while typing.
               "Hi ${hiText(input)}",
               style: TextStyle(
                 color: Colors.white,

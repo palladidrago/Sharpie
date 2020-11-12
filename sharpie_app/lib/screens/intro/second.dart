@@ -15,7 +15,7 @@ class SecondPage extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: <Widget>[
-              Images.logo,
+
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: GetName(),
