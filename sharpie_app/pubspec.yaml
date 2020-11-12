@@ -64,6 +64,10 @@ flutter:
     - family: Josefin
       fonts:
         - asset: fonts/JosefinSans-Medium.ttf
+  
+  assets:
+    - assets/
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:sharpie_app/services/assets.dart';
 void main() async => runApp(new SecondPage());
 
 class SecondPage extends StatelessWidget {
@@ -9,12 +9,13 @@ class SecondPage extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         fontFamily: "Josefin",
-        scaffoldBackgroundColor: Colors.blue[300],
+        scaffoldBackgroundColor: Colors.pink[300],
       ),
       home: Scaffold(
         body: SafeArea(
           child: Column(
             children: <Widget>[
+              Images.logo,
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: GetName(),
