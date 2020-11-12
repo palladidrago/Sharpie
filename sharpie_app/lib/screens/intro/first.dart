@@ -1,25 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:sharpie_app/services/preferences.dart';
+import 'package:sharpie_app/screens/intro/second.dart';
 
 void main() => runApp(FirstPage());
 
+class LangBtn extends StatefulWidget {
+  @override
+  _LangBtnState createState() => _LangBtnState();
+}
+
+class _LangBtnState extends State<LangBtn> {
+  String altLanguage = "עברית";
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton.extended(
+      label: Text(altLanguage),
+      backgroundColor: Colors.blue[300],
+      foregroundColor: Colors.black,
+      onPressed: () {
+        setState(() {
+          if (altLanguage != "עברית") {
+            altLanguage = "עברית";
+          } else {
+            altLanguage = "English";
+          }
+        });
+      },
+    );
+  }
+}
+
 class FirstPage extends StatelessWidget {
   // static String name = "students";
-  final MyCustomForm form = MyCustomForm();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Sharpie",
       theme: ThemeData(
         fontFamily: "Josefin",
+        scaffoldBackgroundColor: Colors.red[300],
       ),
       // Set Work as the default app font.
       home: Scaffold(
-        body: Container(
+        body: SafeArea(
           child: Stack(
             children: <Widget>[
               Container(
-                child: form,
+                child: NameForm(),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Container(
+                  alignment: Alignment.topLeft,
+                  child: LangBtn(),
+                ),
               ),
             ],
           ),
@@ -30,17 +64,17 @@ class FirstPage extends StatelessWidget {
 }
 
 // Define a custom Form widget.
-class MyCustomForm extends StatefulWidget {
+class NameForm extends StatefulWidget {
   @override
-  _MyCustomFormState createState() => _MyCustomFormState();
+  _NameForm createState() => _NameForm();
 }
 
 // Define a corresponding State class.
 // This class holds data related to the Form.
-class _MyCustomFormState extends State<MyCustomForm> {
+class _NameForm extends State<NameForm> {
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
-  String input = "student";
+  String input = "";
   final myController = TextEditingController();
 
   @override
@@ -67,23 +101,25 @@ class _MyCustomFormState extends State<MyCustomForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Sharpie',
-          style: TextStyle(
-            fontSize: 50.0,
-            color: Colors.red[40],
-          ),
-        ),
-        centerTitle: true,
-      ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(30.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             TextFormField(
               controller: myController,
-              decoration: InputDecoration(labelText: "What's your name?"),
+              decoration: InputDecoration(
+                labelText: "What's your name?",
+                labelStyle: TextStyle(
+                  color: Colors.white,
+                ),
+                fillColor: Colors.white,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                  borderRadius: BorderRadius.circular(25.0),
+                ),
+              ),
               onChanged: (String value) {
                 setState(() {
                   input = value;
@@ -95,9 +131,16 @@ class _MyCustomFormState extends State<MyCustomForm> {
             ),
             RaisedButton(
               onPressed: () async {
-                Preferences.setName(input);
-                String name = await Preferences.getName();
-                print(name);
+                if (input != "") {
+                  Preferences.setName(input);
+                  String name = await Preferences.getName();
+                  print(name);
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyWidget()),
+                  );
+                }
               },
               child: Text('Submit'),
               elevation: 8,
@@ -106,11 +149,10 @@ class _MyCustomFormState extends State<MyCustomForm> {
               height: 20,
             ),
             Text(
-              "Hi $input",
+              "Hi ${hiText(input)}",
               style: TextStyle(
-                color: Colors.blue,
+                color: Colors.white,
                 fontSize: 20.0,
-                // fontFamily: "Josefin",
               ),
             ),
           ],
