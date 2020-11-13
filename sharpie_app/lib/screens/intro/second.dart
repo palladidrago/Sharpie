@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharpie_app/services/assets.dart';
+
 void main() async => runApp(new SecondPage());
 
 class SecondPage extends StatelessWidget {
@@ -15,7 +16,6 @@ class SecondPage extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: <Widget>[
-
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: GetName(),
