@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sharpie_app/screens/intro/splash.dart';
 import 'package:sharpie_app/services/preferences.dart';
-import 'package:sharpie_app/screens/intro/first.dart';
 
 void main() async {
   runApp(MyApp());
@@ -13,7 +13,5 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return FirstPage();
-  }
+  Widget build(BuildContext context) => Splash();
 }

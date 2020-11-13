@@ -7,11 +7,14 @@ void main() async => runApp(new SecondPage());
 class SecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    dynamic screenHeight = MediaQuery.of(context).size.height;
+
     return MaterialApp(
       theme: ThemeData(
         fontFamily: "Josefin",
-        scaffoldBackgroundColor: Colors.pink[300],
+        scaffoldBackgroundColor: Colors.blue[300],
       ),
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SafeArea(
           child: Column(
@@ -20,6 +23,22 @@ class SecondPage extends StatelessWidget {
                 padding: const EdgeInsets.all(30.0),
                 child: GetName(),
               ),
+              Container(
+                height: screenHeight * .725,
+                margin: const EdgeInsets.all(35.0),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.red[300],
+                    width: 3.0,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(
+                      10.0,
+                    ),
+                  ),
+                ),
+                child: Container(),
+              )
             ],
           ),
         ),

@@ -15,23 +15,25 @@ class FirstPage extends StatelessWidget {
         fontFamily: "Josefin",
         scaffoldBackgroundColor: Colors.red[300],
       ),
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SafeArea(
-          child: Stack( //There's probably a better way to do this then Scaffold<SafeArea<Stack
+          child: Stack(
+            //There's probably a better way to do this then Scaffold<SafeArea<Stack
             children: <Widget>[
               Container(
                 child: NameForm(),
               ),
               Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Container(
+                padding: const EdgeInsets.all(16.0),
+                child: Container(
                   alignment: Alignment.topLeft,
                   child: LangBtn(),
                 ),
               ),
-                Padding(
-                  padding: const EdgeInsets.all( 100.0),
-                  child: Image(height:190,image: AssetImage(Images.logoTLoc)),
+              Align(
+                alignment: Alignment(0.9, -0.95),
+                child: Image(height: 60, image: AssetImage(Images.logoLoc)),
               ),
             ],
           ),
@@ -78,7 +80,8 @@ class _NameForm extends State<NameForm> {
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
   //What does the controller do?
-  String input = ""; //The input will be changed later, we need it like this at the beginning
+  String input =
+      ""; //The input will be changed later, we need it like this at the beginning
   final myController = TextEditingController();
 
   @override
