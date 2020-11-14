@@ -19,7 +19,7 @@ class FirstPage extends StatelessWidget {
       home: Scaffold(
         body: SafeArea(
           child: Stack(
-            //There's probably a better way to do this then Scaffold<SafeArea<Stack
+            //There's probably a better way to do this than Scaffold<SafeArea<Stack
             children: <Widget>[
               Container(
                 child: NameForm(),
@@ -107,7 +107,7 @@ class _NameForm extends State<NameForm> {
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center, //Centers the form
           crossAxisAlignment: CrossAxisAlignment.center, //Centers the form
           children: <Widget>[
             TextFormField(
