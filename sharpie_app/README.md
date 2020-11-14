@@ -1,5 +1,3 @@
-# sharpie_app
+# Sharpie App
 
 A new Flutter project.
-
-
