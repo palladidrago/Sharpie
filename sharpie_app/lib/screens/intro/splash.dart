@@ -23,7 +23,7 @@ class SplashScrn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-      seconds: 4,
+      seconds: 3,
       routeName: "/",
       navigateAfterSeconds: SecondScreen(),
       gradientBackground: Gradient.lerp(
