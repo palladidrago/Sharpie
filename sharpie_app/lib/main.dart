@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sharpie_app/screens/intro/splash.dart';
 import 'package:sharpie_app/services/preferences.dart';
-
+import 'package:sharpie_app/services/helpers.dart';
 void main() async {
   runApp(MyApp());
   //Added check to main to see if the isFirst() function works. This returns the text "Instance of Future<bool>"
@@ -9,6 +9,8 @@ void main() async {
   final _prefs = Preferences.instance;
   bool iF = await _prefs.isFirst();
   print(iF);
+  var school = await MashovHelper.Test();
+  print(school.name);
 }
 
 class MyApp extends StatelessWidget {
