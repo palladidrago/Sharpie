@@ -21,9 +21,13 @@ class DisplaySize{
 
 class MashovHelper{
 
-  static Future<dynamic> Test() async{
-    var controller = MashovApi.getController();
-    var schoolsResult = await controller.getSchools();
-    return schoolsResult.value[10];
-  }
+  Future<void> Test() async{
+    var controller =  MashovApi.getController();
+    var schools = await controller.getSchools();
+    Login data = await
+    controller.login(schools.value[1284], "337945240", r"3h6Wc$t%OQPov1Ue@IG", 2020)
+    .then((result) => result.value);
+    dynamic grades = await controller.getGrades(data.data.userId);
+    print(grades);
+}
 }
