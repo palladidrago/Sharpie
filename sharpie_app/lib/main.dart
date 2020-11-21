@@ -9,8 +9,6 @@ void main() async {
   final _prefs = Preferences.instance;
   bool iF = await _prefs.isFirst();
   print(iF);
-  MashovHelper mashovHelper = await MashovHelper();
-  mashovHelper.Test();
 }
 
 class MyApp extends StatelessWidget {
