@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:xml/xml.dart';
 import 'package:webfeed/webfeed.dart';
 import 'package:requests/requests.dart';
 
@@ -11,7 +10,7 @@ class TestHelper{
     //Returns the latest test for given kita 
     //kita- number from 7 - 12(ז-ח) +0+ First class or second (example: ז1=701 ,יא1=1101)
 
-    var artRssRawR = await Requests.get("${artRssLink}?kita=${kita.toString()}");
+    var artRssRawR = await Requests.get("$artRssLink?kita=${kita.toString()}");
     String artRssRaw = artRssRawR.content();
     var artRss = RssFeed.parse(artRssRaw).items.first;
     //Todo: this only works if there is one hakbatza for the test, but if there is more than 1
