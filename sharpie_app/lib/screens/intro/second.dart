@@ -3,7 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharpie_app/services/assets.dart';
 
 void main() async => runApp(new SecondPage());
-
+//Todo: dropdownbox for kita, save to sharedpreferences in this format '7-12'0'1-2'
+//For example ז1=701
 class SecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
