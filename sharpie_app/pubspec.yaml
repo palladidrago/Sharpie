@@ -32,7 +32,8 @@ dependencies:
   cupertino_icons: ^1.0.0
   requests: ^3.3.0
   flutter_secure_storage: ^3.3.5
-  simple_mashovapi: ^0.0.2
+  simple_mashovapi: ^0.0.2  
+  flutter_dotenv: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +72,7 @@ flutter:
 
   assets:
     - assets/
+    - .env
 
   #
   # For details regarding fonts from package dependencies,
