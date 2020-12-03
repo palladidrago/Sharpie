@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webfeed/webfeed.dart';
 import 'package:requests/requests.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 
 
@@ -19,8 +20,12 @@ class TestHelper{
   }
 }
 class MashovHelper{
-  void saveLogin(String username,String password, String semel, String year){
-    
+  void saveLogin(String username,String password, String semel, String year) async {
+    final storage = FlutterSecureStorage();
+    await storage.write(key: 'username', value: username);
+    await storage.write(key: 'password', value: password);
+    await storage.write(key: 'semel', value: semel);
+    await storage.write(key: 'year', value: year);
   }
 
 }
