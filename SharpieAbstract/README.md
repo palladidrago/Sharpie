@@ -8,8 +8,10 @@
 * Home screen tabs: one for subjects, one for work to do, one for grades etc.(OrShazam)
 * Individual subject screen(with tests and assignments).
 * Settings screen, to change preferences.
-* Implement database with Firestore. (Probably Mayar)
+* Implement database with Firestore. (Probably OrShazam)
 * Mashov integration with dart mashov_api //1 quarter done
+  * Return classes, and kita.
+* Moodle inegration. 
 * Calculate average of grades on a test. 
 * art-yeshiva integration with rss feed. // Half done
 * Learn more about Flutter.
