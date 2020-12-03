@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async => runApp(new SecondPage());
+
 //Todo: dropdownbox for kita, save to sharedpreferences in this format '7-12'0'1-2'
 //For example ז1=701
 class SecondPage extends StatelessWidget {
@@ -43,7 +44,7 @@ class SecondPage extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       margin: EdgeInsets.all(screenHeight * .1),
-                      child: Dropdown(),
+                      child: MyCustomForm(),
                     ),
                   ],
                 ),
@@ -51,58 +52,6 @@ class SecondPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class Dropdown extends StatefulWidget {
-  Dropdown({Key key}) : super(key: key);
-
-  @override
-  _DropdownState createState() => _DropdownState();
-}
-
-/// This is the private State class that goes with MyStatefulWidget.
-class _DropdownState extends State<Dropdown> {
-  String dropdownValue = 'א׳1';
-
-  @override
-  Widget build(BuildContext context) {
-    return Theme(
-      data: Theme.of(context).copyWith(
-        canvasColor: Colors.red[300],
-      ),
-      child: DropdownButton<String>(
-        value: dropdownValue,
-        isDense: true,
-        icon: Icon(
-          Icons.keyboard_arrow_down,
-          color: Colors.white,
-        ),
-        iconSize: 21,
-        elevation: 16,
-        style: TextStyle(
-          color: Colors.white,
-        ),
-        underline: Container(
-          height: 2,
-          color: Colors.black,
-        ),
-        onChanged: (String newValue) {
-          setState(() {
-            dropdownValue = newValue;
-          });
-        },
-        items: <String>['א׳1', 'א׳2', 'א׳3', 'ב׳']
-            .map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-            ),
-          );
-        }).toList(),
       ),
     );
   }
@@ -136,5 +85,74 @@ class _GetNameState extends State<GetName> {
           final name = snapshot.data.toString();
           return Text("Hello $name");
         });
+  }
+}
+
+// Create a Form widget.
+class MyCustomForm extends StatefulWidget {
+  @override
+  MyCustomFormState createState() {
+    return MyCustomFormState();
+  }
+}
+
+// Create a corresponding State class.
+// This class holds data related to the form.
+class MyCustomFormState extends State<MyCustomForm> {
+  // Create a global key that uniquely identifies the Form widget
+  // and allows validation of the form.
+  //
+  // Note: This is a GlobalKey<FormState>,
+  // not a GlobalKey<MyCustomFormState>.
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    // Build a Form widget using the _formKey created above.
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          TextFormField(
+            decoration: const InputDecoration(
+              labelText: 'Email',
+            ),
+            validator: (value) {
+              if (value.isEmpty) {
+                return 'Please enter some text';
+              }
+              return null;
+            },
+          ),
+          TextFormField(
+            decoration: const InputDecoration(
+              labelText: 'Password',
+            ),
+            validator: (value) {
+              if (value.isEmpty) {
+                return 'Please enter some text';
+              }
+              return null;
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                // Validate returns true if the form is valid, or false
+                // otherwise.
+                if (_formKey.currentState.validate()) {
+                  // If the form is valid, display a Snackbar.
+                  Scaffold.of(context)
+                      .showSnackBar(SnackBar(content: Text('Processing Data')));
+                }
+              },
+              child: Text('Submit'),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
