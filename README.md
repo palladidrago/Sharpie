@@ -13,5 +13,5 @@ We promise to never disappoint our customers and users.
 The app is in the very early stages of development, we literally only have the idea for now. Hopefully this project is not beyond our means.
 
 ## FOR THIS TO WORK YOU NEED TO ADD A DOTENV FILE FOR NOW WITH 
-USERNAME="yourusername"
+USERNAME="yourusername" <br>
 PASSWORD="yourpassword"
