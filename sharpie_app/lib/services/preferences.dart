@@ -6,49 +6,49 @@ import 'dart:async';
 //Todo: put this function inside a class
 
 class Preferences {
-  Preferences._privateConstructor();
-  static final Preferences instance = Preferences._privateConstructor();
+  static  SharedPreferences _prefs;
 
-  Future<bool> isFirst() async {
+  static Future<bool> isFirst() async {
     //Returs if this is the first run of the app.
-    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs = await SharedPreferences.getInstance();
     bool isFirst = _prefs.getBool("fr") == null;
     _prefs.setBool("fr", false);
     return isFirst;
   }
 
   static void setName(String name) async {
-    SharedPreferences _prefs = await SharedPreferences.getInstance();
     _prefs.setString("Name", name);
   }
 
+  setStringValue(String key, String value) async {
+    _prefs = await SharedPreferences.getInstance();
+    _prefs.setString(key, value);
+  }
+
   static Future<String> getName() async {
-    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs = await SharedPreferences.getInstance();
     return _prefs.getString("Name");
   }
 
-  setStringValue(String key, String value) async {
-    SharedPreferences myPrefs = await SharedPreferences.getInstance();
-    myPrefs.setString(key, value);
-  }
+
 
   Future<String> getStringValue(String key) async {
-    SharedPreferences myPrefs = await SharedPreferences.getInstance();
-    return myPrefs.getString(key) ?? "";
+    _prefs = await SharedPreferences.getInstance();
+    return _prefs.getString(key) ?? "";
   }
 
   Future<bool> containsKey(String key) async {
-    SharedPreferences myPrefs = await SharedPreferences.getInstance();
-    return myPrefs.containsKey(key);
+    _prefs = await SharedPreferences.getInstance();
+    return _prefs.containsKey(key);
   }
 
   removeValue(String key) async {
-    SharedPreferences myPrefs = await SharedPreferences.getInstance();
-    return myPrefs.remove(key);
+    _prefs = await SharedPreferences.getInstance();
+    return _prefs.remove(key);
   }
 
   removeAll() async {
-    SharedPreferences myPrefs = await SharedPreferences.getInstance();
-    return myPrefs.clear();
+    _prefs = await SharedPreferences.getInstance();
+    return _prefs.clear();
   }
 }

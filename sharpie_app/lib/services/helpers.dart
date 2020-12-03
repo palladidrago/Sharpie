@@ -19,7 +19,9 @@ class TestHelper{
   }
 }
 class MashovHelper{
-
+  void saveLogin(String username,String password, String semel, String year){
+    
+  }
 
 }
 class DisplaySize{
