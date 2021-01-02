@@ -8,7 +8,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // return Image(image: AssetImage('graphics/background.png'));
-    return GetName();
+    return Center(
+      child: GetName(),
+    );
   }
 }
 
@@ -23,22 +25,29 @@ class _GetNameState extends State<GetName> {
   @override
   void initState() {
     _getName = SharedPreferences.getInstance()
-        .then((prefs) => prefs.getString("Name"));
+        .then((prefs) => prefs.getString("name"));
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: _getName,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState != ConnectionState.done) {
-            // The value is not read yet
-            return Text("Loading username...");
-          }
+      future: _getName,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          // The value is not read yet
+          return Text("Loading username...");
+        }
 
-          // final name = snapshot.data.toString();
-          return Text("Hello $_getName");
-        });
+        final name = snapshot.data.toString();
+        return Text(
+          "Hello $name",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+          ),
+        );
+      },
+    );
   }
 }

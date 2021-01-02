@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sharpie_app/screens/home.dart';
 import 'package:sharpie_app/services/preferences.dart';
 import 'package:sharpie_app/services/assets.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class MashovCredentials extends StatelessWidget {
   @override
@@ -42,22 +41,28 @@ class MashovCredentials extends StatelessWidget {
 
 // Define a custom Form widget.
 class MashovForm extends StatefulWidget {
-  final nameHolder;
-  final passwordHolder;
-  const MashovForm({Key key, this.nameHolder, this.passwordHolder})
-      : super(key: key);
-
   @override
   _MashovFormState createState() => _MashovFormState();
 }
 
 class _MashovFormState extends State<MashovForm> {
+  final nameController = TextEditingController();
+  final passwordController = TextEditingController();
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
   //
   // Note: This is a GlobalKey<FormState>,
   // not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the widget tree.
+    //Useful?
+    nameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,11 +85,51 @@ class _MashovFormState extends State<MashovForm> {
             ),
             child: Column(
               children: <Widget>[
-                FormInp(typeInp: "Email"),
+                TextFormField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    labelText: "Email",
+                    labelStyle: TextStyle(
+                      color: Colors.white,
+                    ),
+                    fillColor: Colors.white,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.white, width: 2.0),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 32.0),
                 ),
-                FormInp(typeInp: "Password"),
+                TextFormField(
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    labelText: "Password",
+                    labelStyle: TextStyle(
+                      color: Colors.white,
+                    ),
+                    fillColor: Colors.white,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.white, width: 2.0),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 32.0),
                 ),
@@ -92,14 +137,15 @@ class _MashovFormState extends State<MashovForm> {
                   child: ElevatedButton(
                     child: Text('Submit'),
                     onPressed: () async {
-                      print(widget.nameHolder);
                       // Validate returns true if the form is valid, or false
                       // otherwise.
                       if (_formKey.currentState.validate()) {
                         // If the form is valid, display a Snackbar.
                         ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('Processing Data...')));
-                        Preferences.setName(widget.nameHolder);
+                        Preferences.setStringValue("name", nameController.text);
+                        Preferences.setStringValue(
+                            "password", passwordController.text);
 
                         Navigator.push(
                           context,
@@ -115,89 +161,6 @@ class _MashovFormState extends State<MashovForm> {
         ],
       ),
     );
-  }
-}
-
-class FormInp extends StatefulWidget {
-  final String typeInp;
-  const FormInp({Key key, this.typeInp}) : super(key: key);
-
-  @override
-  _FormInpState createState() => _FormInpState();
-}
-
-class _FormInpState extends State<FormInp> {
-  // Create a text controller and use it to retrieve the current value
-  // of the TextField.
-  final nameController = TextEditingController();
-  final passwordController = TextEditingController();
-
-  getItemAndNavigate(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => MashovForm(
-          nameHolder: nameController.text,
-          passwordHolder: passwordController.text,
-        ),
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is removed from the widget tree.
-    //Useful?
-    nameController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (widget.typeInp == "Email") {
-      return TextFormField(
-        controller: nameController,
-        decoration: InputDecoration(
-          labelText: widget.typeInp,
-          labelStyle: TextStyle(
-            color: Colors.white,
-          ),
-          fillColor: Colors.white,
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.white, width: 2.0),
-            borderRadius: BorderRadius.circular(25.0),
-          ),
-        ),
-        validator: (value) {
-          if (value.isEmpty) {
-            return 'Please enter some text';
-          }
-          return null;
-        },
-      );
-    } else {
-      return TextFormField(
-        controller: passwordController,
-        decoration: InputDecoration(
-          labelText: widget.typeInp,
-          labelStyle: TextStyle(
-            color: Colors.white,
-          ),
-          fillColor: Colors.white,
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.white, width: 2.0),
-            borderRadius: BorderRadius.circular(25.0),
-          ),
-        ),
-        validator: (value) {
-          if (value.isEmpty) {
-            return 'Please enter some text';
-          }
-          return null;
-        },
-      );
-    }
   }
 }
 

@@ -16,21 +16,12 @@ class Preferences {
     return isFirst;
   }
 
-  static void setName(String name) async {
-    _prefs.setString("Name", name);
-  }
-
-  setStringValue(String key, String value) async {
+  static void setStringValue(String key, String value) async {
     _prefs = await SharedPreferences.getInstance();
     _prefs.setString(key, value);
   }
 
-  static Future<String> getName() async {
-    _prefs = await SharedPreferences.getInstance();
-    return _prefs.getString("Name");
-  }
-
-  Future<String> getStringValue(String key) async {
+  static Future<String> getStringValue(String key) async {
     _prefs = await SharedPreferences.getInstance();
     return _prefs.getString(key) ?? "";
   }
