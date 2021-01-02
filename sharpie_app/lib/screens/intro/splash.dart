@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sharpie_app/screens/intro/first.dart';
+import 'package:sharpie_app/screens/intro/mashov_credentials.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:sharpie_app/services/assets.dart';
-
-void main() => runApp(Splash());
 
 class Splash extends StatelessWidget {
   @override
@@ -53,5 +51,5 @@ class SplashScrn extends StatelessWidget {
 
 class SecondScreen extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => FirstPage();
+  Widget build(BuildContext context) => MashovCredentials();
 }
