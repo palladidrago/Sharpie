@@ -7,7 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Image(image: AssetImage('graphics/background.png'));
+    // return Image(image: AssetImage('graphics/background.png'));
+    return GetName();
   }
 }
 
@@ -36,8 +37,8 @@ class _GetNameState extends State<GetName> {
             return Text("Loading username...");
           }
 
-          final name = snapshot.data.toString();
-          return Text("Hello $name");
+          // final name = snapshot.data.toString();
+          return Text("Hello $_getName");
         });
   }
 }

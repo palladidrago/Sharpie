@@ -6,7 +6,7 @@ import 'dart:async';
 //Todo: put this function inside a class
 
 class Preferences {
-  static  SharedPreferences _prefs;
+  static SharedPreferences _prefs;
 
   static Future<bool> isFirst() async {
     //Returs if this is the first run of the app.
@@ -29,8 +29,6 @@ class Preferences {
     _prefs = await SharedPreferences.getInstance();
     return _prefs.getString("Name");
   }
-
-
 
   Future<String> getStringValue(String key) async {
     _prefs = await SharedPreferences.getInstance();

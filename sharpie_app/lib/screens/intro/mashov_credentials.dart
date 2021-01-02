@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:sharpie_app/screens/home.dart';
 import 'package:sharpie_app/services/preferences.dart';
 import 'package:sharpie_app/services/assets.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class MashovCredentials extends StatelessWidget {
   @override
   //Is the main "Wrapper" for the first page
   Widget build(BuildContext context) {
-    dynamic screenHeight = MediaQuery.of(context).size.height;
-
     return MaterialApp(
       title: "Sharpie",
       theme: ThemeData(
@@ -21,10 +20,7 @@ class MashovCredentials extends StatelessWidget {
           child: Stack(
             //There's probably a better way to do this than Scaffold<SafeArea<Stack
             children: <Widget>[
-              Container(
-                margin: EdgeInsets.all(screenHeight * .1),
-                child: MashovForm(),
-              ),
+              MashovForm(),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Container(
@@ -46,13 +42,16 @@ class MashovCredentials extends StatelessWidget {
 
 // Define a custom Form widget.
 class MashovForm extends StatefulWidget {
+  final nameHolder;
+  final passwordHolder;
+  const MashovForm({Key key, this.nameHolder, this.passwordHolder})
+      : super(key: key);
+
   @override
   _MashovFormState createState() => _MashovFormState();
 }
 
 class _MashovFormState extends State<MashovForm> {
-  String email = "";
-
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
   //
@@ -62,71 +61,55 @@ class _MashovFormState extends State<MashovForm> {
 
   @override
   Widget build(BuildContext context) {
-    dynamic screenHeight = MediaQuery.of(context).size.height;
-    dynamic screenWidth = MediaQuery.of(context).size.width;
-
     return Form(
       key: _formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center, //Centers the form
-        crossAxisAlignment: CrossAxisAlignment.center, //Centers the form
         children: <Widget>[
           Container(
-            height: screenHeight * .725,
-            width: screenWidth * 7,
-            margin: const EdgeInsets.all(35.0),
+            margin: const EdgeInsets.all(30.0),
+            padding: const EdgeInsets.all(50.0),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Colors.red[300],
+                color: Colors.blue[300],
                 width: 3.0,
               ),
               borderRadius: BorderRadius.all(
-                Radius.circular(
-                  10.0,
-                ),
+                Radius.circular(10.0),
               ),
             ),
             child: Column(
-              children: [
-                FormInp(
-                  input: email,
-                  typeInp: "Email",
+              children: <Widget>[
+                FormInp(typeInp: "Email"),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 32.0),
                 ),
                 FormInp(typeInp: "Password"),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  padding: const EdgeInsets.symmetric(vertical: 32.0),
+                ),
+                Container(
                   child: ElevatedButton(
                     child: Text('Submit'),
                     onPressed: () async {
+                      print(widget.nameHolder);
                       // Validate returns true if the form is valid, or false
                       // otherwise.
                       if (_formKey.currentState.validate()) {
                         // If the form is valid, display a Snackbar.
                         ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('Processing Data...')));
-                        if (email != "") {
-                          Preferences.setName(email.split("@")[0]);
-                          String name = await Preferences.getName();
-                          print(name);
+                        Preferences.setName(widget.nameHolder);
 
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
-                          );
-                        }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomePage()),
+                        );
                       }
                     },
                   ),
                 ),
               ],
-            ),
-          ),
-          Text(
-            //Text, displays the name of the student while typing.
-            "Hi $email",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20.0,
             ),
           ),
         ],
@@ -136,35 +119,37 @@ class _MashovFormState extends State<MashovForm> {
 }
 
 class FormInp extends StatefulWidget {
-  final String input;
   final String typeInp;
-  const FormInp({Key key, this.input, this.typeInp}) : super(key: key);
+  const FormInp({Key key, this.typeInp}) : super(key: key);
 
   @override
-  _FormInpState createState() => _FormInpState(input: this.input);
+  _FormInpState createState() => _FormInpState();
 }
 
 class _FormInpState extends State<FormInp> {
-  String greetings(String text) {
-    //Returns the text to display after the form.
-    if (text == "") {
-      return "student";
-    } else {
-      return text;
-    }
-  }
-
-  String input = "";
-  _FormInpState({this.input});
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
-  final myController = TextEditingController();
+  final nameController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  getItemAndNavigate(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MashovForm(
+          nameHolder: nameController.text,
+          passwordHolder: passwordController.text,
+        ),
+      ),
+    );
+  }
 
   @override
   void dispose() {
     // Clean up the controller when the widget is removed from the widget tree.
     //Useful?
-    myController.dispose();
+    nameController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -172,7 +157,7 @@ class _FormInpState extends State<FormInp> {
   Widget build(BuildContext context) {
     if (widget.typeInp == "Email") {
       return TextFormField(
-        controller: myController,
+        controller: nameController,
         decoration: InputDecoration(
           labelText: widget.typeInp,
           labelStyle: TextStyle(
@@ -190,16 +175,10 @@ class _FormInpState extends State<FormInp> {
           }
           return null;
         },
-        onChanged: (String value) {
-          setState(() {
-            //On changed, reset the state of the widget with input = value.
-            input = value;
-          });
-        },
       );
     } else {
       return TextFormField(
-        controller: myController,
+        controller: passwordController,
         decoration: InputDecoration(
           labelText: widget.typeInp,
           labelStyle: TextStyle(
