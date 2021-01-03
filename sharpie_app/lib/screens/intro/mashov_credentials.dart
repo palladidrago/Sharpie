@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sharpie_app/screens/home.dart';
 import 'package:sharpie_app/services/preferences.dart';
 import 'package:sharpie_app/services/assets.dart';
+import 'package:simple_mashovapi/simple_mashovapi.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class MashovCredentials extends StatelessWidget {
   @override
@@ -46,6 +48,8 @@ class MashovForm extends StatefulWidget {
 }
 
 class _MashovFormState extends State<MashovForm> {
+  var controller = Controller();
+
   final nameController = TextEditingController();
   final passwordController = TextEditingController();
   // Create a global key that uniquely identifies the Form widget
@@ -137,16 +141,23 @@ class _MashovFormState extends State<MashovForm> {
                   child: ElevatedButton(
                     child: Text('Submit'),
                     onPressed: () async {
+                      await DotEnv().load('.env');
                       // Validate returns true if the form is valid, or false
                       // otherwise.
                       if (_formKey.currentState.validate()) {
                         // If the form is valid, display a Snackbar.
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Processing Data...')));
-                        Preferences.setStringValue("name", nameController.text);
-                        Preferences.setStringValue(
+                        // ScaffoldMessenger.of(context).showSnackBar(
+                        //     SnackBar(content: Text('Processing Data...')));
+                        await controller.login(nameController.text,
+                            passwordController.text, "540484", "2021");
+                        Preferences.setString("name", nameController.text);
+                        Preferences.setString(
                             "password", passwordController.text);
-
+                        var grades = await controller
+                            .getGradeList(); //Returns list of Grades
+                        for (var grade in grades) {
+                          print('${grade.subjectName}: ${grade.grade}');
+                        }
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => HomePage()),

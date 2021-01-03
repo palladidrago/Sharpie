@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:sharpie_app/screens/intro/splash.dart';
-import 'package:simple_mashovapi/simple_mashovapi.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:simple_mashovapi/simple_mashovapi.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:sharpie_app/services/preferences.dart';
 
-void main() async {
+void main() {
   runApp(Sharpie());
-  var controller = Controller();
-  await DotEnv().load('.env');
-  await controller.login(
-      DotEnv().env['USERNAME'], DotEnv().env['PASSWORD'], "540484", "2021");
-  var grades = await controller.getGradeList(); //Returns list of Grades
-  for (var grade in grades) {
-    print('${grade.subjectName}: ${grade.grade}');
-  }
+  // Preferences.removeAll();
+  // var controller = Controller();
+  // await DotEnv().load('.env');
+  // await controller.login(
+  //     DotEnv().env['USERNAME'], DotEnv().env['PASSWORD'], "540484", "2021");
+  // var grades = await controller.getGradeList(); //Returns list of Grades
+  // for (var grade in grades) {
+  //   print('${grade.subjectName}: ${grade.grade}');
+  // }
   // for (var grade = 0; grade < grades.length; grade++) {
   //   print('${grades[grade].subjectName}: ${grades[grade].grade}');
   // }

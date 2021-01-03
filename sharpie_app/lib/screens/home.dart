@@ -8,46 +8,59 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // return Image(image: AssetImage('graphics/background.png'));
-    return Center(
-      child: GetName(),
+    return MaterialApp(
+      theme: ThemeData(
+        fontFamily: "Josefin",
+        scaffoldBackgroundColor: Colors.red[300],
+      ),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: SafeArea(
+          child: Stack(
+            children: <Widget>[
+              GetFuture(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
 
-class GetName extends StatefulWidget {
+class GetFuture extends StatefulWidget {
   @override
-  _GetNameState createState() => _GetNameState();
+  _GetFutureState createState() => _GetFutureState();
 }
 
-class _GetNameState extends State<GetName> {
-  Future<String> _getName;
+class _GetFutureState extends State<GetFuture> {
+  String _email = '';
+  String _password = '';
 
   @override
   void initState() {
-    _getName = SharedPreferences.getInstance()
-        .then((prefs) => prefs.getString("name"));
     super.initState();
+    _loadName();
+  }
+
+  _loadName() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _email = (prefs.getString('name') ?? '');
+      _password = (prefs.getString('password') ?? '');
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _getName,
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState != ConnectionState.done) {
-          // The value is not read yet
-          return Text("Loading username...");
-        }
-
-        final name = snapshot.data.toString();
-        return Text(
-          "Hello $name",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.0,
-          ),
-        );
-      },
+    return Align(
+      alignment: Alignment.topRight,
+      child: Text(
+        "id: $_email, pass: $_password.",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 20.0,
+        ),
+      ),
     );
   }
 }

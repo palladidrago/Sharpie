@@ -6,6 +6,7 @@ import 'dart:async';
 //Todo: put this function inside a class
 
 class Preferences {
+  static Preferences _storageUtil;
   static SharedPreferences _prefs;
 
   static Future<bool> isFirst() async {
@@ -16,14 +17,25 @@ class Preferences {
     return isFirst;
   }
 
-  static void setStringValue(String key, String value) async {
-    _prefs = await SharedPreferences.getInstance();
-    _prefs.setString(key, value);
+  static Future<Preferences> getInstance() async {
+    if (_storageUtil == null) {
+      // keep local instance till it is fully initialized.
+      var secureStorage = Preferences._();
+      await secureStorage._init();
+      _storageUtil = secureStorage;
+    }
+    return _storageUtil;
   }
 
-  static Future<String> getStringValue(String key) async {
+  Preferences._();
+  Future _init() async {
     _prefs = await SharedPreferences.getInstance();
-    return _prefs.getString(key) ?? "";
+  }
+
+  // sets string
+  static Future<void> setString(String key, String value) async {
+    _prefs = await SharedPreferences.getInstance();
+    return _prefs.setString(key, value);
   }
 
   Future<bool> containsKey(String key) async {
@@ -31,12 +43,12 @@ class Preferences {
     return _prefs.containsKey(key);
   }
 
-  removeValue(String key) async {
+  static removeValue(String key) async {
     _prefs = await SharedPreferences.getInstance();
     return _prefs.remove(key);
   }
 
-  removeAll() async {
+  static removeAll() async {
     _prefs = await SharedPreferences.getInstance();
     return _prefs.clear();
   }
