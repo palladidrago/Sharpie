@@ -6,8 +6,7 @@ void main() async {
   runApp(MyApp());
   var controller = Controller();
   await DotEnv().load('.env');
-  await controller.login(DotEnv().env['USERNAME'],DotEnv().env['PASSWORD'], "540484", "2021");
-  var grades = await controller.getGradeList(); //Returns list of Grades
+  List<Grade> grades = await controller.getGradeList(); //Returns list of Grades
   print(grades[grades.length-1].id.toString() + ' grade:' +grades[grades.length-1].grade.toString());
 }
 
