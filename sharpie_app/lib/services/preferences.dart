@@ -6,7 +6,8 @@ import 'dart:async';
 //Todo: put this function inside a class
 
 class Preferences {
-  static  SharedPreferences _prefs;
+  static Preferences _storageUtil;
+  static SharedPreferences _prefs;
 
   static Future<bool> isFirst() async {
     //Returs if this is the first run of the app.
@@ -16,25 +17,25 @@ class Preferences {
     return isFirst;
   }
 
-  static void setName(String name) async {
-    _prefs.setString("Name", name);
+  static Future<Preferences> getInstance() async {
+    if (_storageUtil == null) {
+      // keep local instance till it is fully initialized.
+      var secureStorage = Preferences._();
+      await secureStorage._init();
+      _storageUtil = secureStorage;
+    }
+    return _storageUtil;
   }
 
-  setStringValue(String key, String value) async {
+  Preferences._();
+  Future _init() async {
     _prefs = await SharedPreferences.getInstance();
-    _prefs.setString(key, value);
   }
 
-  static Future<String> getName() async {
+  // sets string
+  static Future<void> setString(String key, String value) async {
     _prefs = await SharedPreferences.getInstance();
-    return _prefs.getString("Name");
-  }
-
-
-
-  Future<String> getStringValue(String key) async {
-    _prefs = await SharedPreferences.getInstance();
-    return _prefs.getString(key) ?? "";
+    return _prefs.setString(key, value);
   }
 
   Future<bool> containsKey(String key) async {
@@ -42,12 +43,12 @@ class Preferences {
     return _prefs.containsKey(key);
   }
 
-  removeValue(String key) async {
+  static removeValue(String key) async {
     _prefs = await SharedPreferences.getInstance();
     return _prefs.remove(key);
   }
 
-  removeAll() async {
+  static removeAll() async {
     _prefs = await SharedPreferences.getInstance();
     return _prefs.clear();
   }
