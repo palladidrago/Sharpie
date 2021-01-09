@@ -51,5 +51,5 @@ class SplashScrn extends StatelessWidget {
 
 class SecondScreen extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => GradeList();
+  Widget build(BuildContext context) => MashovCredentials();
 }
