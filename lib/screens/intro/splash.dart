@@ -14,10 +14,9 @@ class Splash extends StatelessWidget {
         fontFamily: "Josefin",
       ),
       home: SplashScreen(
-        //TODO: Use navigateAfterFuture instead of the mess i made down there.
         seconds: 2,
         routeName: "/",
-        navigateAfterSeconds: SecondScreen(),
+        navigateAfterFuture: SecondScreen().logged,
         gradientBackground: Gradient.lerp(
           LinearGradient(
             colors: [

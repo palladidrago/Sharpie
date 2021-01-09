@@ -151,31 +151,32 @@ class _MashovFormState extends State<MashovForm> {
                   ),
                   Container(
                     child: ElevatedButton(
-                        child: Text('Submit'),
-                        onPressed: () async {
-                          // Validate returns true if the form is valid, or false
-                          // otherwise.
-                          if (_formKey.currentState.validate()) {
-                            //If the form is valid, saves the username and passowrd, and saves the user as logged in.
-                            SharedPreferences _prefs =
-                                await SharedPreferences.getInstance();
-                            final storage = new FlutterSecureStorage();
-                            await mashovController.login(nameController.text,
-                                passwordController.text, "540484", "2021");
-                            await storage.write(
-                                key: "mashovUsername",
-                                value: nameController.text);
-                            await storage.write(
-                                key: "mashovPassword",
-                                value: passwordController.text);
-                            await _prefs.setBool('isLogged', true);
-                          }
+                      child: Text('Submit'),
+                      onPressed: () async {
+                        // Validate returns true if the form is valid, or false
+                        // otherwise.
+                        if (_formKey.currentState.validate()) {
+                          //If the form is valid, saves the username and passowrd, and saves the user as logged in.
+                          SharedPreferences _prefs =
+                              await SharedPreferences.getInstance();
+                          final storage = new FlutterSecureStorage();
+                          await mashovController.login(nameController.text,
+                              passwordController.text, "540484", "2021");
+                          await storage.write(
+                              key: "mashovUsername",
+                              value: nameController.text);
+                          await storage.write(
+                              key: "mashovPassword",
+                              value: passwordController.text);
+                          await _prefs.setBool('isLogged', true);
+                        }
 
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
-                          );
-                        }),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomePage()),
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),
