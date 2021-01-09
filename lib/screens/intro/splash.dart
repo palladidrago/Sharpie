@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sharpie_app/screens/intro/mashov_credentials.dart';
 import 'package:sharpie_app/screens/grades.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:sharpie_app/services/assets.dart';
