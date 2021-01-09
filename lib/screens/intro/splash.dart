@@ -17,7 +17,7 @@ class Splash extends StatelessWidget {
         //TODO: Use navigateAfterFuture instead of the mess i made down there.
         seconds: 2,
         routeName: "/",
-        navigateAfterSeconds: NextPage(),
+        navigateAfterSeconds: SecondScreen(),
         gradientBackground: Gradient.lerp(
           LinearGradient(
             colors: [
@@ -45,14 +45,8 @@ class Splash extends StatelessWidget {
   }
 }
 
-<<<<<<< HEAD
-class NextPage extends StatelessWidget {
-
-  static Future<bool> isLogged() async{
-=======
 class SecondScreen extends StatelessWidget {
   static Future<bool> isLogged() async {
->>>>>>> 5f5187e5861504547e4af39aba9822b679cb5973
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     var iL = _prefs.getBool("isLogged");
     if (iL == false || iL == null) {
@@ -66,12 +60,7 @@ class SecondScreen extends StatelessWidget {
   final Future<bool> logged = isLogged();
 
   @override
-<<<<<<< HEAD
-  Widget build(BuildContext context) { 
-    //If already logged in, return home page, else go to log in page.
-=======
   Widget build(BuildContext context) {
->>>>>>> 5f5187e5861504547e4af39aba9822b679cb5973
     return FutureBuilder<bool>(
       future: logged,
       builder: (context, snapshot) {
