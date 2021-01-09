@@ -19,7 +19,6 @@ class _GradeListState extends State<GradeList> {
   }
 
   
-
   @override
   Widget build(BuildContext context) {
     //Build an ugly list of grades.
@@ -28,23 +27,25 @@ class _GradeListState extends State<GradeList> {
       builder: (BuildContext context, AsyncSnapshot<List<Grade>> snapshot){
         if (snapshot.hasData){
           
-          return ListView.builder(
+          return MaterialApp(
+            home: ListView.builder(
             padding: EdgeInsets.all(16.0),
             itemCount: snapshot.data.length,
             itemBuilder:  (context, i) { 
-            if (i.isOdd) return Divider();
-            return Text(snapshot.data[i].grade.toString());
-            }
+            var gr = snapshot.data[i];
+            return  Text(
+                "${gr.grade}---${gr.gradingEvent}",
+                style: TextStyle(color:Colors.white, fontSize:12),
+                );
+              }
+            )
           );
-        } else if (snapshot.hasError) {
-            return Padding(child: Text("Error"));
-        }else {
-          return Padding(
-              padding: EdgeInsets.only(top: 16),
-              child: Text('Awaiting result...'),
-            );
+        }else if (snapshot.hasError) {
+            return Text("Error");
+        }else{
+          return Text('Awaiting result...');
         }
       }
-      );
+    );
   }
 }

@@ -3,7 +3,6 @@ import 'package:sharpie_app/screens/home.dart';
 import 'package:sharpie_app/services/preferences.dart';
 import 'package:sharpie_app/services/assets.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class MashovCredentials extends StatelessWidget {
   @override
@@ -92,7 +91,7 @@ class _MashovFormState extends State<MashovForm> {
                 TextFormField(
                   controller: nameController,
                   decoration: InputDecoration(
-                    labelText: "Email",
+                    labelText: "Username(Id)",
                     labelStyle: TextStyle(
                       color: Colors.white,
                     ),
@@ -141,7 +140,6 @@ class _MashovFormState extends State<MashovForm> {
                   child: ElevatedButton(
                     child: Text('Submit'),
                     onPressed: () async {
-                      await DotEnv().load('.env');
                       // Validate returns true if the form is valid, or false
                       // otherwise.
                       if (_formKey.currentState.validate()) {
