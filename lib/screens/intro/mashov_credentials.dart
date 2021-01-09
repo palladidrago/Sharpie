@@ -55,9 +55,8 @@ class _MashovFormState extends State<MashovForm> {
 
   final nameController = TextEditingController();
   final passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>(); // Globalkey<FormState> is debug only. this might be why building the app doesn't work.
-
-
+  final _formKey = GlobalKey<
+      FormState>(); // Globalkey<FormState> is debug only. this might be why building the app doesn't work.
 
   @override
   Widget build(BuildContext context) {
@@ -148,16 +147,6 @@ class _MashovFormState extends State<MashovForm> {
                                 key: "mashovPassword",
                                 value: passwordController.text);
                             await _prefs.setBool('isLogged', true);
-<<<<<<< HEAD
-                        }
-                        
-                        
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
-                      );
-                    }
-=======
                           }
 
                           Navigator.push(
@@ -165,7 +154,6 @@ class _MashovFormState extends State<MashovForm> {
                             MaterialPageRoute(builder: (context) => HomePage()),
                           );
                         }),
->>>>>>> 5f5187e5861504547e4af39aba9822b679cb5973
                   ),
                 ],
               ),
