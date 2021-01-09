@@ -16,7 +16,7 @@ class Splash extends StatelessWidget {
       //Add login for loading.
       return HomePage();
     }
-    return null();
+    return null;
   }
 
   @override
