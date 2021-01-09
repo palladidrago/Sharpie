@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sharpie_app/screens/grades.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:sharpie_app/services/assets.dart';
+import 'mashov_credentials.dart';
 
 class Splash extends StatelessWidget {
   @override
