@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sharpie_app/screens/home.dart';
-import 'package:sharpie_app/services/assets.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
+import '../../services/assets.dart';
 import '../home.dart';
 
 class MashovCredentials extends StatelessWidget {
