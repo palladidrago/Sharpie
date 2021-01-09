@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharpie_app/screens/home.dart';
 import 'package:sharpie_app/services/assets.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
-
 import '../home.dart';
 
 class MashovCredentials extends StatelessWidget {
@@ -54,8 +53,17 @@ class _MashovFormState extends State<MashovForm> {
 
   final nameController = TextEditingController();
   final passwordController = TextEditingController();
-  final _formKey = GlobalKey<
-      FormState>(); // Globalkey<FormState> is debug only. this might be why building the app doesn't work.
+  // Globalkey<FormState> is debug only. this might be why building the app doesn't work.
+  final _formKey = GlobalKey<FormState>();
+
+  bool _obscureText = true;
+
+  // Toggles the password show status
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +90,10 @@ class _MashovFormState extends State<MashovForm> {
                     controller: nameController,
                     decoration: InputDecoration(
                       labelText: "Username(Id)",
+                      icon: const Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: const Icon(Icons.supervised_user_circle),
+                      ),
                       labelStyle: TextStyle(
                         color: Colors.white,
                       ),
@@ -99,13 +111,18 @@ class _MashovFormState extends State<MashovForm> {
                       return null;
                     },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 32.0),
+                  Divider(
+                    height: 50,
+                    thickness: 2,
                   ),
                   TextFormField(
                     controller: passwordController,
                     decoration: InputDecoration(
                       labelText: "Password",
+                      icon: const Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: const Icon(Icons.lock),
+                      ),
                       labelStyle: TextStyle(
                         color: Colors.white,
                       ),
@@ -122,9 +139,15 @@ class _MashovFormState extends State<MashovForm> {
                       }
                       return null;
                     },
+                    obscureText: _obscureText,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 32.0),
+                  new FlatButton(
+                    onPressed: _toggle,
+                    child: new Text(_obscureText ? "Show" : "Hide"),
+                  ),
+                  Divider(
+                    height: 50,
+                    thickness: 5,
                   ),
                   Container(
                     child: ElevatedButton(
