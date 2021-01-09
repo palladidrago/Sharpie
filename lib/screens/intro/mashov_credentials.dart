@@ -6,6 +6,8 @@ import 'package:sharpie_app/screens/home.dart';
 import 'package:sharpie_app/services/assets.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 
+import '../home.dart';
+
 class MashovCredentials extends StatelessWidget {
   //Is the main "Wrapper" for the first page
   @override
@@ -160,8 +162,7 @@ class _MashovFormState extends State<MashovForm> {
 
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => GradeList()),
+                            MaterialPageRoute(builder: (context) => HomePage()),
                           );
                         }),
 >>>>>>> 5f5187e5861504547e4af39aba9822b679cb5973
