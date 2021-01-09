@@ -4,9 +4,8 @@ import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:sharpie_app/services/preferences.dart';
 
-void main() async{
+void main() async {
   runApp(Sharpie());
-
 }
 
 class Sharpie extends StatelessWidget {

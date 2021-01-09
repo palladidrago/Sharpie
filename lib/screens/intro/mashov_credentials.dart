@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:sharpie_app/screens/grades.dart';
 import 'package:sharpie_app/screens/home.dart';
-import 'package:sharpie_app/services/preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sharpie_app/services/assets.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 
+
 class MashovCredentials extends StatelessWidget {
-  @override
+ 
   //Is the main "Wrapper" for the first page
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Sharpie",
@@ -14,7 +17,6 @@ class MashovCredentials extends StatelessWidget {
         fontFamily: "Josefin",
         scaffoldBackgroundColor: Colors.red[300],
       ),
-      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SafeArea(
           child: Stack(
@@ -47,7 +49,7 @@ class MashovForm extends StatefulWidget {
 }
 
 class _MashovFormState extends State<MashovForm> {
-  var controller = Controller();
+  var mashovController = Controller();
 
   final nameController = TextEditingController();
   final passwordController = TextEditingController();
@@ -146,29 +148,25 @@ class _MashovFormState extends State<MashovForm> {
                         // If the form is valid, display a Snackbar.
                         // ScaffoldMessenger.of(context).showSnackBar(
                         //     SnackBar(content: Text('Processing Data...')));
-                        await controller.login(nameController.text,
+                        final storage = new FlutterSecureStorage();
+                        await mashovController.login(nameController.text,
                             passwordController.text, "540484", "2021");
-                        Preferences.setString("name", nameController.text);
-                        Preferences.setString(
-                            "password", passwordController.text);
-                        var grades = await controller
-                            .getGradeList(); //Returns list of Grades
-                        for (var grade in grades) {
-                          print('${grade.subjectName}: ${grade.grade}');
+                        await storage.write(key: "mashovUsername", value: nameController.text);
+                        await storage.write(
+                            key: "mashovPassword", value: passwordController.text);
                         }
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
-                        );
-                      }
-                    },
+                          MaterialPageRoute(builder: (context) => GradeList()),
+                      );
+                    }
                   ),
                 ),
               ],
             ),
           ),
         ],
-      ),
+      )
     );
   }
 }
