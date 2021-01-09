@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharpie_app/screens/home.dart';
-=======
-import 'package:sharpie_app/screens/intro/mashov_credentials.dart';
->>>>>>> a26e48c9b5a7106b4053c737b28a870725d792a6
 import 'package:splashscreen/splashscreen.dart';
 import 'package:sharpie_app/services/assets.dart';
+import 'mashov_credentials.dart';
 
 class Splash extends StatelessWidget {
   @override
@@ -48,7 +45,6 @@ class Splash extends StatelessWidget {
 }
 
 class SecondScreen extends StatelessWidget {
-<<<<<<< HEAD
   static Future<bool> isLogged() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     var iL = _prefs.getBool("isLogged");
@@ -79,8 +75,4 @@ class SecondScreen extends StatelessWidget {
       },
     );
   }
-=======
-  @override
-  Widget build(BuildContext context) => MashovCredentials();
->>>>>>> a26e48c9b5a7106b4053c737b28a870725d792a6
 }
