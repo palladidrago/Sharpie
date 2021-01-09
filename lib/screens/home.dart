@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'grades.dart';
 //Actual home page.
-//What is the layout for this page?
 
 class HomePage extends StatelessWidget {
   @override

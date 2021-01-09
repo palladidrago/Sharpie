@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:sharpie_app/screens/grades.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharpie_app/services/assets.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 
+<<<<<<< HEAD
+=======
+import '../home.dart';
+
+>>>>>>> a26e48c9b5a7106b4053c737b28a870725d792a6
 class MashovCredentials extends StatelessWidget {
   //Is the main "Wrapper" for the first page
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Sharpie",
+      title: "Mashov Login",
       theme: ThemeData(
         fontFamily: "Josefin",
         scaffoldBackgroundColor: Colors.red[300],
       ),
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text('Mashov Login'),
@@ -136,6 +141,7 @@ class _MashovFormState extends State<MashovForm> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 32.0),
+<<<<<<< HEAD
                   ),
                   Container(
                     child: ElevatedButton(
@@ -166,6 +172,35 @@ class _MashovFormState extends State<MashovForm> {
                           );
                         }),
                   ),
+=======
+                  ),
+                  Container(
+                    child: ElevatedButton(
+                        child: Text('Submit'),
+                        onPressed: () async {
+                          // Validate returns true if the form is valid, or false
+                          // otherwise.
+                          if (_formKey.currentState.validate()) {
+                            // If the form is valid, display a Snackbar.
+                            // ScaffoldMessenger.of(context).showSnackBar(
+                            //     SnackBar(content: Text('Processing Data...')));
+                            final storage = new FlutterSecureStorage();
+                            await mashovController.login(nameController.text,
+                                passwordController.text, "540484", "2021");
+                            await storage.write(
+                                key: "mashovUsername",
+                                value: nameController.text);
+                            await storage.write(
+                                key: "mashovPassword",
+                                value: passwordController.text);
+                          }
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomePage()),
+                          );
+                        }),
+                  ),
+>>>>>>> a26e48c9b5a7106b4053c737b28a870725d792a6
                 ],
               ),
             ),

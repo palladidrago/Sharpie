@@ -26,6 +26,7 @@ class _GradeListState extends State<GradeList> {
         future: _grades,
         builder: (BuildContext context, AsyncSnapshot<List<Grade>> snapshot) {
           if (snapshot.hasData) {
+<<<<<<< HEAD
             return MaterialApp(
                 home: ListView.builder(
                     padding: EdgeInsets.all(16.0),
@@ -51,6 +52,34 @@ class _GradeListState extends State<GradeList> {
                         ),
                       );
                     }));
+=======
+            return ListView.builder(
+              padding: EdgeInsets.all(16.0),
+              itemCount: snapshot.data.length,
+              itemBuilder: (context, i) {
+                var gr = snapshot.data[i];
+                if (gr.grade != null) {
+                  if (gr.grade > 90) {
+                    comment = "WoW";
+                  } else if (gr.grade > 75) {
+                    comment = "nice";
+                  } else if (gr.grade > 60) {
+                    comment = "can do better bro";
+                  } else {
+                    comment = "u threw";
+                  }
+                }
+                return Text(
+                  "${gr.grade}---${gr.gradingEvent} \n comment: $comment",
+                  textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                  ),
+                );
+              },
+            );
+>>>>>>> a26e48c9b5a7106b4053c737b28a870725d792a6
           } else if (snapshot.hasError) {
             return Text("Error");
           } else {
