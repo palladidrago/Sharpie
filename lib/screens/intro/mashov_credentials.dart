@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sharpie_app/screens/grades.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sharpie_app/screens/home.dart';
 import 'package:sharpie_app/services/assets.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 
@@ -53,21 +54,9 @@ class _MashovFormState extends State<MashovForm> {
 
   final nameController = TextEditingController();
   final passwordController = TextEditingController();
-  // Create a global key that uniquely identifies the Form widget
-  // and allows validation of the form.
-  //
-  // Note: This is a GlobalKey<FormState>,
-  // not a GlobalKey<MyCustomFormState>.
-  final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>(); // Globalkey<FormState> is debug only. this might be why building the app doesn't work.
 
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is removed from the widget tree.
-    //Useful?
-    nameController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -159,7 +148,7 @@ class _MashovFormState extends State<MashovForm> {
                         
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => GradeList()),
+                          MaterialPageRoute(builder: (context) => HomePage()),
                       );
                     }
                   ),

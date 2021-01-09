@@ -15,9 +15,10 @@ class Splash extends StatelessWidget {
         fontFamily: "Josefin",
       ),
       home: SplashScreen(
+        //TODO: Use navigateAfterFuture instead of the mess i made down there.
         seconds: 2,
         routeName: "/",
-        navigateAfterSeconds: SecondScreen(),
+        navigateAfterSeconds: NextPage(),
         gradientBackground: Gradient.lerp(
           LinearGradient(
             colors: [
@@ -45,7 +46,7 @@ class Splash extends StatelessWidget {
   }
 }
 
-class SecondScreen extends StatelessWidget {
+class NextPage extends StatelessWidget {
 
   static Future<bool> isLogged() async{
     SharedPreferences _prefs = await SharedPreferences.getInstance();
@@ -58,6 +59,7 @@ class SecondScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) { 
+    //If already logged in, return home page, else go to log in page.
     return FutureBuilder<bool>(
       future: logged,
       builder: (context, snapshot){
