@@ -14,6 +14,9 @@ class HomePage extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        appBar: AppBar(
+          title: Text('Grades'),
+        ),
         body: SafeArea(
           child: Stack(
             children: <Widget>[
