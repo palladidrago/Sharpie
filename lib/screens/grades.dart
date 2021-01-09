@@ -23,39 +23,42 @@ class _GradeListState extends State<GradeList> {
   Widget build(BuildContext context) {
     //Build an ugly list of grades.
     return FutureBuilder<List<Grade>>(
-        future: _grades,
-        builder: (BuildContext context, AsyncSnapshot<List<Grade>> snapshot) {
-          if (snapshot.hasData) {
-            return MaterialApp(
-                home: ListView.builder(
-                    padding: EdgeInsets.all(16.0),
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (context, i) {
-                      var gr = snapshot.data[i];
-                      if (gr.grade != null) {
-                        if (gr.grade > 90) {
-                          comment = "WoW";
-                        } else if (gr.grade > 75) {
-                          comment = "nice";
-                        } else if (gr.grade > 60) {
-                          comment = "can do better bro";
-                        } else {
-                          comment = "u threw";
-                        }
-                      }
-                      return Text(
-                        "${gr.grade}---${gr.gradingEvent} \n comment: $comment \n",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 13.5,
-                        ),
-                      );
-                    }));
-          } else if (snapshot.hasError) {
-            return Text("Error");
-          } else {
-            return Text('Awaiting result...');
-          }
-        });
+      future: _grades,
+      builder: (BuildContext context, AsyncSnapshot<List<Grade>> snapshot) {
+        if (snapshot.hasData) {
+          return MaterialApp(
+            home: ListView.builder(
+              padding: EdgeInsets.all(16.0),
+              itemCount: snapshot.data.length,
+              itemBuilder: (context, i) {
+                var gr = snapshot.data[i];
+                if (gr.grade != null) {
+                  if (gr.grade > 90) {
+                    comment = "WoW";
+                  } else if (gr.grade > 75) {
+                    comment = "nice";
+                  } else if (gr.grade > 60) {
+                    comment = "can do better bro";
+                  } else {
+                    comment = "u threw";
+                  }
+                }
+                return Text(
+                  "${gr.grade}---${gr.gradingEvent} \n comment: $comment \n",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 13.5,
+                  ),
+                );
+              },
+            ),
+          );
+        } else if (snapshot.hasError) {
+          return Text("Error");
+        } else {
+          return Text('Awaiting result...');
+        }
+      },
+    );
   }
 }
