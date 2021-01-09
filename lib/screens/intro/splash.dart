@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'package:sharpie_app/screens/home.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:sharpie_app/services/assets.dart';
 import 'mashov_credentials.dart';
 
 class Splash extends StatelessWidget {
-    static Future<Widget> nextPage() async {
-
+  static Future<Widget> nextPage() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     // _prefs.setBool("isLogged", false);
     var iL = _prefs.getBool("isLogged");
@@ -18,21 +16,19 @@ class Splash extends StatelessWidget {
       //Add login for loading.
       return HomePage();
     }
-    return CircularProgressIndicator();
+    return null();
   }
-  
+
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
       title: 'Splash Screen',
       theme: ThemeData(
         fontFamily: "Josefin",
       ),
       home: SplashScreen(
-        //TODO: Use navigateAfterFuture instead of the mess i made down there.
         navigateAfterFuture: Splash.nextPage(),
-        seconds:100,
+        seconds: 100,
         routeName: "/",
         gradientBackground: Gradient.lerp(
           LinearGradient(
@@ -60,4 +56,3 @@ class Splash extends StatelessWidget {
     );
   }
 }
-
