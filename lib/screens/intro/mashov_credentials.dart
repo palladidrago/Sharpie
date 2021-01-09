@@ -55,9 +55,8 @@ class _MashovFormState extends State<MashovForm> {
 
   final nameController = TextEditingController();
   final passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>(); // Globalkey<FormState> is debug only. this might be why building the app doesn't work.
-
-
+  final _formKey = GlobalKey<
+      FormState>(); // Globalkey<FormState> is debug only. this might be why building the app doesn't work.
 
   @override
   Widget build(BuildContext context) {
