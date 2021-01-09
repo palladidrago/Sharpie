@@ -8,13 +8,14 @@ class GradeList extends StatefulWidget {
 }
 
 class _GradeListState extends State<GradeList> {
+  var comment;
   var _grades = _getGrades(); //Saves list of grades in variable
   static Future<List<Grade>> _getGrades() async {
     //Returns list of grades.
     var mashovController = Controller();
     final storage = new FlutterSecureStorage();
-    await mashovController.login(
-        await storage.read(key: "mashovUsername"), await storage.read(key:"mashovPassword"), "540484", "2021");
+    await mashovController.login(await storage.read(key: "mashovUsername"),
+        await storage.read(key: "mashovPassword"), "540484", "2021");
     return await mashovController.getGradeList(); //Returns list of Grades
   }
 
@@ -25,17 +26,32 @@ class _GradeListState extends State<GradeList> {
         future: _grades,
         builder: (BuildContext context, AsyncSnapshot<List<Grade>> snapshot) {
           if (snapshot.hasData) {
-            return MaterialApp(
-                home: ListView.builder(
-                    padding: EdgeInsets.all(16.0),
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (context, i) {
-                      var gr = snapshot.data[i];
-                      return Text(
-                        "${gr.grade}---${gr.gradingEvent}",
-                        style: TextStyle(color: Colors.white, fontSize: 12),
-                      );
-                    }));
+            return ListView.builder(
+              padding: EdgeInsets.all(16.0),
+              itemCount: snapshot.data.length,
+              itemBuilder: (context, i) {
+                var gr = snapshot.data[i];
+                if (gr.grade != null) {
+                  if (gr.grade > 90) {
+                    comment = "WoW";
+                  } else if (gr.grade > 75) {
+                    comment = "nice";
+                  } else if (gr.grade > 60) {
+                    comment = "can do better bro";
+                  } else {
+                    comment = "u threw";
+                  }
+                }
+                return Text(
+                  "${gr.grade}---${gr.gradingEvent} \n comment: $comment",
+                  textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                  ),
+                );
+              },
+            );
           } else if (snapshot.hasError) {
             return Text("Error");
           } else {
