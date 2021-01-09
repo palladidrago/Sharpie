@@ -48,7 +48,7 @@ class Splash extends StatelessWidget {
 class SecondScreen extends StatelessWidget {
   static Future<bool> isLogged() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
-    _prefs.setBool("isLogged", false);
+    // _prefs.setBool("isLogged", false);
     var iL = _prefs.getBool("isLogged");
     if (iL == false || iL == null) {
       return false;
