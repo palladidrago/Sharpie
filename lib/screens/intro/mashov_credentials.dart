@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sharpie_app/screens/grades.dart';
-import 'package:sharpie_app/screens/home.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharpie_app/services/assets.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 
@@ -145,16 +145,18 @@ class _MashovFormState extends State<MashovForm> {
                       // Validate returns true if the form is valid, or false
                       // otherwise.
                       if (_formKey.currentState.validate()) {
-                        // If the form is valid, display a Snackbar.
-                        // ScaffoldMessenger.of(context).showSnackBar(
-                        //     SnackBar(content: Text('Processing Data...')));
+                        //If the form is valid, saves the username and passowrd, and saves the user as logged in.
+                        SharedPreferences _prefs = await SharedPreferences.getInstance();
                         final storage = new FlutterSecureStorage();
                         await mashovController.login(nameController.text,
                             passwordController.text, "540484", "2021");
                         await storage.write(key: "mashovUsername", value: nameController.text);
                         await storage.write(
                             key: "mashovPassword", value: passwordController.text);
+                            await _prefs.setBool('isLogged', true);
                         }
+                        
+                        
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => GradeList()),

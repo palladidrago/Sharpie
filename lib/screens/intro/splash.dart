@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sharpie_app/screens/intro/mashov_credentials.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharpie_app/screens/grades.dart';
+import 'package:sharpie_app/screens/home.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:sharpie_app/services/assets.dart';
+import 'mashov_credentials.dart';
 
 class Splash extends StatelessWidget {
   @override
@@ -44,6 +46,27 @@ class Splash extends StatelessWidget {
 }
 
 class SecondScreen extends StatelessWidget {
+
+  static Future<bool> isLogged() async{
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    var iL = _prefs.getBool("isLogged");
+    if (iL==false || iL == null) return false;    
+    else if ( iL == true) return true;
+  }
+
+  Future<bool> logged = isLogged();  
+
   @override
-  Widget build(BuildContext context) => MashovCredentials();
+  Widget build(BuildContext context) { 
+    return FutureBuilder<bool>(
+      future: logged,
+      builder: (context, snapshot){
+        if (snapshot.connectionState == ConnectionState.none &&
+                snapshot.hasData == null) return Center(child: CircularProgressIndicator());
+        else if (snapshot.data == true){return HomePage();}
+        else if (snapshot.data == false){ return MashovCredentials();}
+        else return Text("ERROR");
+      }
+    );
+  }
 }
