@@ -82,10 +82,9 @@ class _HomePageState extends State<HomePage> {
                             builder: (BuildContext context,
                                 AsyncSnapshot<Name> snapshot) {
                               if (snapshot.hasData) {
-                                var firstname = snapshot.data.firstName;
-                                var lastname = snapshot.data.lastName;
+                                var name = snapshot.data;
                                 return Text(
-                                  "שלום!\n$firstname $lastname",
+                                  "שלום!\n${name.firstName} ${name.lastName}",
                                   textDirection: TextDirection.rtl,
                                   style: TextStyle(
                                     fontSize: 25,
