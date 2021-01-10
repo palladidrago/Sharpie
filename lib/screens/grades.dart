@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-
 class GradeList extends StatefulWidget {
   @override
   _GradeListState createState() => _GradeListState();

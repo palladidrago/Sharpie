@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:simple_mashovapi/simple_mashovapi.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 // import 'grades.dart';
 import '../services/assets.dart';
 
@@ -16,6 +18,16 @@ class Lesson {
 }
 
 class _HomePageState extends State<HomePage> {
+  var _name = _getName(); //Saves list of grades in variable
+  static Future<Name> _getName() async {
+    //Returns list of grades.
+    var mashovController = Controller();
+    final storage = new FlutterSecureStorage();
+    await mashovController.login(await storage.read(key: "mashovUsername"),
+        await storage.read(key: "mashovPassword"), "540484", "2021");
+    return await mashovController.getName(); //Returns list of Grades
+  }
+
   @override
   Widget build(BuildContext context) {
     // what we'll actually do instead of [1,2,3,4,5] is make a list<lesson> and feed this sexy animal with data from artyeshiva
@@ -65,15 +77,39 @@ class _HomePageState extends State<HomePage> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
-                          Text(
-                            "!שלום מאיר",
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.blue[900],
-                              //Color(0XFF343E87
-                            ),
+                          FutureBuilder<Name>(
+                            future: _name,
+                            builder: (BuildContext context,
+                                AsyncSnapshot<Name> snapshot) {
+                              if (snapshot.hasData) {
+                                var firstname = snapshot.data.firstName;
+                                var lastname = snapshot.data.lastName;
+                                return Text(
+                                  "שלום!\n$firstname $lastname",
+                                  textDirection: TextDirection.rtl,
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.blue[900],
+                                    //Color(0XFF343E87
+                                  ),
+                                );
+                              } else if (snapshot.hasError) {
+                                return Text("Error");
+                              } else {
+                                return Text('Awaiting result...');
+                              }
+                            },
                           ),
+                          // Text(
+                          //   "!שלום מאיר",
+                          //   style: TextStyle(
+                          //     fontSize: 30,
+                          //     fontWeight: FontWeight.w900,
+                          //     color: Colors.blue[900],
+                          //     //Color(0XFF343E87
+                          //   ),
+                          // ),
                           SizedBox(
                             height: 5,
                           ),
