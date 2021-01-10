@@ -15,6 +15,7 @@ class MashovCredentials extends StatelessWidget {
         fontFamily: "Josefin",
         scaffoldBackgroundColor: Colors.red[300],
       ),
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text('Mashov Login'),
@@ -91,7 +92,7 @@ class _MashovFormState extends State<MashovForm> {
                       labelText: "Username(Id)",
                       icon: const Padding(
                         padding: const EdgeInsets.only(top: 10.0),
-                        child: const Icon(Icons.supervised_user_circle),
+                        child: const Icon(Icons.person),
                       ),
                       labelStyle: TextStyle(
                         color: Colors.white,
