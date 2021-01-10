@@ -1,5 +1,5 @@
-name: sharpie_app
-description: A new Flutter project.
+name: sharpie
+description: An app to keep track of your assignments and test, all tailored to your needs. Homework and test tracker for art-yeshiva.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -36,9 +36,14 @@ dependencies:
   # flutter_dotenv: ^2.1.0
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.8.0"
   flutter_test:
     sdk: flutter
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/Sharpie.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

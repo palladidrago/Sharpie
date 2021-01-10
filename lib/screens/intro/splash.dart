@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sharpie_app/screens/home.dart';
 import 'package:splashscreen/splashscreen.dart';
-import 'package:sharpie_app/services/assets.dart';
 import 'mashov_credentials.dart';
+import '../../services/assets.dart';
+import '../home.dart';
 
 class Splash extends StatelessWidget {
   static Future<Widget> nextPage() async {
@@ -16,7 +16,7 @@ class Splash extends StatelessWidget {
       //Add login for loading.
       return HomePage();
     }
-    return null();
+    return null;
   }
 
   @override
@@ -28,7 +28,7 @@ class Splash extends StatelessWidget {
       ),
       home: SplashScreen(
         navigateAfterFuture: Splash.nextPage(),
-        seconds: 100,
+        seconds: 1,
         routeName: "/",
         gradientBackground: Gradient.lerp(
           LinearGradient(
