@@ -32,13 +32,18 @@ dependencies:
   cupertino_icons: ^1.0.0
   requests: ^3.3.0
   flutter_secure_storage: ^3.3.5
-  simple_mashovapi: ^0.0.3
+  simple_mashovapi: ^0.0.4
   # flutter_dotenv: ^2.1.0
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.8.0"
   flutter_test:
     sdk: flutter
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/Sharpie.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
