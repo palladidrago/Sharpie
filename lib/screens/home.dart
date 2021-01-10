@@ -22,6 +22,12 @@ class _HomePageState extends State<HomePage> {
     List<int> lessons = [1, 2, 3, 4, 5];
     int _selectedIndex = 0; // for navbar
     return MaterialApp(
+      title: "Home",
+      theme: ThemeData(
+        fontFamily: "Josefin",
+        scaffoldBackgroundColor: Colors.red[300],
+      ),
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Stack(
           children: <Widget>[
@@ -178,6 +184,7 @@ class _HomePageState extends State<HomePage> {
           selectedItemColor: Colors.black,
           currentIndex: _selectedIndex,
           onTap: (int index) {
+            print("hello");
             setState(() {
               _selectedIndex = index;
             });
