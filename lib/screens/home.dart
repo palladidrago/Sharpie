@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'grades.dart';
+// import 'grades.dart';
 import '../services/assets.dart';
 
 //Actual home page.
@@ -22,10 +22,10 @@ class _HomePageState extends State<HomePage> {
     List<int> lessons = [1, 2, 3, 4, 5];
     int _selectedIndex = 0; // for navbar
     return MaterialApp(
-        home: Scaffold(
-      body: Stack(
-        children: [
-          Container(
+      home: Scaffold(
+        body: Stack(
+          children: <Widget>[
+            Container(
               padding: EdgeInsets.only(left: 40),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -36,53 +36,59 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               child: Column(
-                children: [
+                children: <Widget>[
                   SizedBox(
                     height: 50,
                   ),
                   Row(
-                    children: [
+                    children: <Widget>[
                       Container(
-                          width: 70,
-                          height: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage(Images.logoLoc),
-                              ))),
+                        width: 70,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage(Images.logoLoc),
+                          ),
+                        ),
+                      ),
                       SizedBox(
                         width: 50,
                       ),
                       Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              "!שלום מאיר",
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.blue[900],
-                                //Color(0XFF343E87
-                              ),
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          Text(
+                            "!שלום מאיר",
+                            style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.blue[900],
+                              //Color(0XFF343E87
                             ),
-                            SizedBox(
-                              height: 5,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "👇 מערכת להיום מוצגת למטה",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0XFF343E87),
                             ),
-                            Text("👇 מערכת להיום מוצגת למטה",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color(0XFF343E87),
-                                ))
-                          ])
+                          ),
+                        ],
+                      ),
                     ],
-                  )
+                  ),
                 ],
-              )),
-          Positioned(
-            top: 160,
-            child: Container(
+              ),
+            ),
+            Positioned(
+              top: 160,
+              child: Container(
                 height: MediaQuery.of(context).size.height - 150,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
@@ -90,98 +96,112 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: Column(
-                    children: List.generate(lessons.length, (index) {
-                  return Container(
-                      // the time will be lessons[index].time, the class description will be lessons[index].desc
-                      margin: EdgeInsets.only(top: 20),
-                      padding: EdgeInsets.only(left: 30),
-                      height: 75,
-                      width: MediaQuery.of(context).size.width - 100,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFF9F9FB),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Row(children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("8:45",
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold)),
-                            Text("AM",
-                                style: TextStyle(
+                  children: List.generate(
+                    lessons.length,
+                    (index) {
+                      return Container(
+                        // the time will be lessons[index].time, the class description will be lessons[index].desc
+                        margin: EdgeInsets.only(top: 20),
+                        padding: EdgeInsets.only(left: 30),
+                        height: 75,
+                        width: MediaQuery.of(context).size.width - 100,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFF9F9FB),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  "8:45",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "AM",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.grey),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              // the line seperating time of lesson and description
+                              height: 75,
+                              width: 1,
+                              color: Colors.grey.withOpacity(0.5),
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  "מתמטיקה(5)",
+                                  style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.blueGrey),
+                                ),
+                                Text(
+                                  "הרב אירנה {יא1,יא2}",
+                                  style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w300,
-                                    color: Colors.grey)),
+                                    color: Colors.blueGrey,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          // the line seperating time of lesson and description
-                          height: 75,
-                          width: 1,
-                          color: Colors.grey.withOpacity(0.5),
-                        ),
-                        SizedBox(
-                          width: 30,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("מתמטיקה(5)",
-                                style: TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.blueGrey)),
-                            Text(
-                              "הרב אירנה {יא1,יא2}",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w300,
-                                color: Colors.blueGrey,
-                              ),
-                            )
-                          ],
-                        ),
-                      ]));
-                }))),
-          )
-        ],
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          elevation: 0,
+          backgroundColor: Color(0xFFF9F9FB),
+          unselectedItemColor: Colors.grey,
+          selectedItemColor: Colors.black,
+          currentIndex: _selectedIndex,
+          onTap: (int index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+          type: BottomNavigationBarType.fixed,
+          items: [
+            // i added "title : Text() cause apparently all items in navigation bar must have a non-null value for title"
+            BottomNavigationBarItem(
+              label: "",
+              icon: Icon(Icons.home),
+            ),
+            BottomNavigationBarItem(
+              label: "",
+              icon: Icon(Icons.assessment_outlined),
+            ),
+            BottomNavigationBarItem(
+              label: "",
+              icon: Icon(Icons.settings),
+            ),
+          ],
+        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 0,
-        backgroundColor: Color(0xFFF9F9FB),
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.black,
-        currentIndex: _selectedIndex,
-        onTap: (int index) {
-          setState(() {
-  
-            _selectedIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        items: [
-          // i added "title : Text() cause apparently all items in navigation bar must have a non-null value for title"
-          BottomNavigationBarItem(
-            title: Text(""),
-            icon: Icon(Icons.home),
-          ),
-          BottomNavigationBarItem(
-            title: Text(""),
-            icon: Icon(Icons.assessment_outlined),
-          ),
-          BottomNavigationBarItem(
-            title: Text(""),
-            icon: Icon(Icons.settings),
-          ),
-        ],
-      ),
-    ));
+    );
   }
-  //DateTime.now();
 }
 /* class HomePage extends StatelessWidget {
   @override
