@@ -21,4 +21,4 @@ We promise to never disappoint our customers and users.
 * Make grades page look better, calculate average of grades on a test with firestore.
 * Figure out a proper day to get the daily schedule (With regurarly updated excel sheet or json in the database maybe)
 * Fix the app logo
-
+* Make the mashov not send an email because it thinks I'm logging in from a new device.
