@@ -34,7 +34,6 @@ class _HomePageState extends State<HomePage> {
     List<int> lessons = [1, 2, 3, 4, 5];
     int _selectedIndex = 0; // for navbar
     return MaterialApp(
-<<<<<<< Updated upstream
       title: "Home",
       theme: ThemeData(
         fontFamily: "Josefin",
@@ -72,27 +71,9 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-=======
-        home: Scaffold(
-          body: Stack(
-            children: [
-              Container(
-                  padding: EdgeInsets.only(left: 40),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Color(0xFFD4E7FE),
-                        Color(0xFFF9F9FB),
-                      ],
-                    ),
-                  ),
-                  child: Column(
-                    children: [
->>>>>>> Stashed changes
                       SizedBox(
-                        height: 50,
+                        width: 50,
                       ),
-<<<<<<< Updated upstream
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
@@ -107,34 +88,10 @@ class _HomePageState extends State<HomePage> {
                                   textDirection: TextDirection.rtl,
                                   style: TextStyle(
                                     fontSize: 25,
-=======
-                      Row(
-                        children: [
-                          Container(
-                              width: 70,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(Images.logoLoc),
-                                  ))),
-                          SizedBox(
-                            width: 50,
-                          ),
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  "!שלום מאיר",
-                                  style: TextStyle(
-                                    fontSize: 30,
->>>>>>> Stashed changes
                                     fontWeight: FontWeight.w900,
                                     color: Colors.blue[900],
                                     //Color(0XFF343E87
                                   ),
-<<<<<<< Updated upstream
                                 );
                               } else if (snapshot.hasError) {
                                 return Text("Error");
@@ -216,62 +173,6 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(
                               width: 10,
                             ),
-=======
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text("👇 מערכת להיום מוצגת למטה",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color(0XFF343E87),
-                                    ))
-                              ])
-                        ],
-                      )
-                    ],
-                  )),
-              Positioned(
-                top: 160,
-                child: Container(
-                    height: MediaQuery.of(context).size.height - 150,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: Column(
-                        children: List.generate(lessons.length, (index) {
-                      return Container(
-                          // the time will be lessons[index].time, the class description will be lessons[index].desc
-                          margin: EdgeInsets.only(top: 20),
-                          padding: EdgeInsets.only(left: 30),
-                          height: 75,
-                          width: MediaQuery.of(context).size.width - 100,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFF9F9FB),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Row(children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("8:45",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold)),
-                                Text("AM",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w300,
-                                        color: Colors.grey)),
-                              ],
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
->>>>>>> Stashed changes
                             Container(
                               // the line seperating time of lesson and description
                               height: 75,
@@ -283,7 +184,6 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
-<<<<<<< Updated upstream
                               children: <Widget>[
                                 Text(
                                   "מתמטיקה(5)",
@@ -292,14 +192,6 @@ class _HomePageState extends State<HomePage> {
                                       fontWeight: FontWeight.w700,
                                       color: Colors.blueGrey),
                                 ),
-=======
-                              children: [
-                                Text("מתמטיקה(5)",
-                                    style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.blueGrey)),
->>>>>>> Stashed changes
                                 Text(
                                   "הרב אירנה {יא1,יא2}",
                                   style: TextStyle(
@@ -307,7 +199,6 @@ class _HomePageState extends State<HomePage> {
                                     fontWeight: FontWeight.w300,
                                     color: Colors.blueGrey,
                                   ),
-<<<<<<< Updated upstream
                                 ),
                               ],
                             ),
@@ -328,67 +219,6 @@ class _HomePageState extends State<HomePage> {
             ),
             // GradeList(),
           ],
-=======
-                                )
-                              ],
-                            ),
-                          ]));
-                    }))),
-              )
-            ],
-          ),
-          bottomNavigationBar: BottomNavigationBar(
-            elevation: 0,
-            backgroundColor: Color(0xFFF9F9FB),
-            unselectedItemColor: Colors.grey,
-            selectedItemColor: Colors.black,
-            currentIndex: _selectedIndex,
-            onTap: (int index) {
-              setState(() {
-                if (index == 1) {
-                  _selectedIndex = index;
-                  Navigator.of(context).pushNamed('/grades');
-                }
-              });
-            },
-            type: BottomNavigationBarType.fixed,
-            items: [
-              // i added "title : Text()"" cause apparently all items in navigation bar must have a non-null value for title
-              BottomNavigationBarItem(
-                title: Text(""),
-                icon: Icon(Icons.home),
-              ),
-              BottomNavigationBarItem(
-                title: Text(""),
-                icon: Icon(Icons.assessment_outlined),
-              ),
-              BottomNavigationBarItem(
-                title: Text(""),
-                icon: Icon(Icons.settings),
-              ),
-            ],
-          ),
-        ),
-        routes: {
-          '/grades': (_) => GradeList(),
-        });
-  }
-  //DateTime.now();
-}
-/* class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Sharpie",
-      theme: ThemeData(
-        fontFamily: "Josefin",
-        scaffoldBackgroundColor: Colors.red[300],
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Grades'),
->>>>>>> Stashed changes
         ),
         bottomNavigationBar: BottomNavigationBar(
           elevation: 0,
