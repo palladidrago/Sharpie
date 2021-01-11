@@ -46,7 +46,7 @@ class _GradeListState extends State<GradeList> {
                 "${gr.grade}---${gr.gradingEvent}, מקצוע: ${gr.subjectName}\ncomment: $comment\n",
                 textDirection: TextDirection.rtl,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontSize: 13.5,
                 ),
               );

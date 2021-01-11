@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-// import 'grades.dart';
 import '../services/assets.dart';
+import 'grades.dart';
 
 //Actual home page.
 class HomePage extends StatefulWidget {
@@ -210,6 +210,14 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 650,
+                right: 50,
+              ),
+              child: GradeList(),
+            ),
+            // GradeList(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
