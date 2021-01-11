@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'screens/intro/splash.dart';
-import 'services/helpers.dart';
+// import 'services/helpers.dart';
 
 void main() async {
   runApp(Sharpie());
-  var date = new DateTime.now().toString();
-  var dateParse = DateTime.parse(date);
+  // var date = new DateTime.now().toString();
+  // var dateParse = DateTime.parse(date);
+  var mashovController = Controller();
   final storage = new FlutterSecureStorage();
-  MashovHelper().saveLogin(
-    await storage.read(key: "mashovUsername"),
-    await storage.read(key: "mashovPassword"),
-    "540484",
-    dateParse.year.toString(),
-  );
+  await mashovController.login(await storage.read(key: "mashovUsername"),
+      await storage.read(key: "mashovPassword"), "540484", "2021");
 }
 
 class Sharpie extends StatelessWidget {
