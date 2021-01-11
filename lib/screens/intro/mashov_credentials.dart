@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
-import '../../services/assets.dart';
-import '../home.dart';
+//Self imports.
+import 'package:sharpie/services/assets.dart';
+import 'package:sharpie/services/helpers.dart';
+import 'package:sharpie/screens/home.dart';
 
 class MashovCredentials extends StatelessWidget {
   //Is the main "Wrapper" for the first page
@@ -153,24 +155,15 @@ class _MashovFormState extends State<MashovForm> {
                     child: ElevatedButton(
                       child: Text('Submit'),
                       onPressed: () async {
+                        print("LOL");
                         // Validate returns true if the form is valid, or false
-                        // otherwise.
                         if (_formKey.currentState.validate()) {
-                          //If the form is valid, saves the username and passowrd, and saves the user as logged in.
-                          SharedPreferences _prefs =
-                              await SharedPreferences.getInstance();
-                          final storage = new FlutterSecureStorage();
+                          //If the form is valid(what does it check??), saves the username and password to secure storage,
+                          //and saves the user as logged in.
                           await mashovController.login(nameController.text,
                               passwordController.text, "540484", "2021");
-                          await storage.write(
-                              key: "mashovUsername",
-                              value: nameController.text);
-                          await storage.write(
-                              key: "mashovPassword",
-                              value: passwordController.text);
-                          await _prefs.setBool('isLogged', true);
+                          mashovLoginSave(nameController.text,passwordController.text); //Saves login, saves as logged in.
                         }
-
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => HomePage()),
@@ -186,13 +179,15 @@ class _MashovFormState extends State<MashovForm> {
   }
 }
 
+
+// To Do: actually do something with this button.
 class LangBtn extends StatefulWidget {
   @override
   _LangBtnState createState() => _LangBtnState();
 }
 
 class _LangBtnState extends State<LangBtn> {
-  //Is the button for english and hebrew.
+  //Is the button for switching from english to hebrew and vice versa.
   String altLanguage = "עברית";
   @override
   Widget build(BuildContext context) {

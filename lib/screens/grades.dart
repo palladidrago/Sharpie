@@ -30,7 +30,7 @@ class _GradeListState extends State<GradeList> {
             padding: EdgeInsets.all(16.0),
             itemCount: snapshot.data.length,
             itemBuilder: (context, i) {
-              var gr = snapshot.data[i];
+              var gr = snapshot.data[snapshot.data.length-i-1];
               if (gr.grade != null) {
                 if (gr.grade > 90) {
                   comment = "WoW";
