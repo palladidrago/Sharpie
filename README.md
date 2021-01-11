@@ -22,22 +22,3 @@ We promise to never disappoint our customers and users.
 * Figure out a proper day to get the daily schedule (With regurarly updated excel sheet or json in the database maybe)
 * Fix the app logo
 
-# Distant future
-
-* Add weekly yondi excel sheet.
-* Individual subject screen(with tests and assignments).
-* Moodle inegration. 
-* Settings screen, to change preferences.
-* Web interface/Login for yondi to upload homework.
-* Add support for both languages.
-
-# Done
-
-* Get grades with mashovapi
-* Mashov login screen.
-* Save to phone storage(With preferences api)
-* Give Davido something to do.
-* Only show Mashov login screen if not already logged in.
-* Know if first time opening the app, with shared preferences.
-* Tell teacher we started.
-
