@@ -22,9 +22,9 @@ class _HomePageState extends State<HomePage> {
   static Future<Name> _getName() async {
     //Returns list of grades.
     var mashovController = Controller();
-    final storage = new FlutterSecureStorage();
-    await mashovController.login(await storage.read(key: "mashovUsername"),
-        await storage.read(key: "mashovPassword"), "540484", "2021");
+    // final storage = new FlutterSecureStorage();
+    // await mashovController.login(await storage.read(key: "mashovUsername"),
+    //     await storage.read(key: "mashovPassword"), "540484", "2021");
     return await mashovController.getName(); //Returns list of Grades
   }
 
