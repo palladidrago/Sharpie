@@ -161,9 +161,9 @@ class _MashovFormState extends State<MashovForm> {
                           await mashovController.login(nameController.text,
                               passwordController.text, "540484", "2021");
                           mashovLoginSave(
-                              nameController.text,
-                              passwordController
-                                  .text); //Saves login, saves as logged in.
+                            nameController.text,
+                            passwordController.text,
+                          ); //Saves login, saves as logged in.
                         }
                         Navigator.push(
                           context,
