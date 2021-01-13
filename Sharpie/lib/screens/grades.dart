@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class GradeList extends StatefulWidget {
   @override
@@ -44,10 +45,10 @@ class _GradeListState extends State<GradeList> {
               return Container(
                   //"${gr.grade}---${gr.gradingEvent}, מקצוע: ${gr.subjectName}",
                   height: 75,
-                  margin: EdgeInsets.only(top:15),
-                   decoration: BoxDecoration(
-                          color: Colors.blue.withOpacity(0.3),
-                          borderRadius: BorderRadius.circular(30),
+                  margin: EdgeInsets.only(top: 15),
+                  decoration: BoxDecoration(
+                    color: Colors.blue.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(30),
                   ),
                   width: MediaQuery.of(context).size.width - 10,
                   child: Row(
@@ -56,16 +57,12 @@ class _GradeListState extends State<GradeList> {
                       SizedBox(height: 10),
                       reactionIcon,
                       SizedBox(width: 10),
-                      Text(
-                        "${gr.grade}  ${gr.subjectName},${gr.gradingEvent}",
-                        textDirection: TextDirection.rtl,
-                        style:TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                        )
-
-
-                        )
+                      Text("${gr.grade}  ${gr.subjectName},${gr.gradingEvent}",
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ))
                     ],
                   ));
             },
@@ -73,7 +70,9 @@ class _GradeListState extends State<GradeList> {
         } else if (snapshot.hasError) {
           return Text("Error");
         } else {
-          return Text('Awaiting result...');
+          return Center(
+            child: SpinKitDoubleBounce(color: Colors.blue.withOpacity(0.3)),
+          );
         }
       },
     );

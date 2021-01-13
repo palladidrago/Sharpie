@@ -5,9 +5,15 @@ class Schedule extends StatefulWidget {
   _ScheduleState createState() => _ScheduleState();
 }
 
+// class lesson for future use idk
+class Lesson {
+  String desc;
+  String time;
+}
 class _ScheduleState extends State<Schedule> {
   @override
   Widget build(BuildContext context) {
+     // what we'll actually do instead of [1,2,3,4,5] is make a list<lesson> and feed this sexy animal with data from artyeshiva
     var lessons = [1, 2, 3, 4, 5, 6];
     return ListView.builder(
       itemCount: lessons.length,

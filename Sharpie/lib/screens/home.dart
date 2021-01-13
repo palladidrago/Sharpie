@@ -12,12 +12,6 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-// class lesson for future use
-class Lesson {
-  String desc;
-  String time;
-}
-
 class _HomePageState extends State<HomePage> {
   var _name = _getName(); //Saves list of grades in variable
   static Future<Name> _getName() async {
@@ -31,8 +25,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // what we'll actually do instead of [1,2,3,4,5] is make a list<lesson> and feed this sexy animal with data from artyeshiva
-    List<int> lessons = [1, 2, 3, 4];
     int _selectedIndex = 0; // for navbar
     return MaterialApp(
       title: "Home",
@@ -161,14 +153,13 @@ class _HomePageState extends State<HomePage> {
           selectedItemColor: Colors.black,
           currentIndex: _selectedIndex,
           onTap: (int index) {
-            print("hello");
+            print("Nani");
             setState(() {
               _selectedIndex = index;
             });
           },
           type: BottomNavigationBarType.fixed,
           items: [
-            // i added "title : Text() cause apparently all items in navigation bar must have a non-null value for title"
             BottomNavigationBarItem(
               label: "",
               icon: Icon(Icons.home),
