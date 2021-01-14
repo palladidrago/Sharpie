@@ -5,6 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../services/assets.dart';
 import 'grades.dart';
 import 'schedule.dart';
+import 'gradesPage.dart';
 
 //Actual home page.
 class HomePage extends StatefulWidget {
@@ -129,12 +130,12 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(50),
                 ),
-                child:  Padding(
-                padding: const EdgeInsets.only(
-                bottom: 300,
-               ),
-                child: Schedule(),
-            ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 300,
+                  ),
+                  child: Schedule(),
+                ),
               ),
             ),
             Padding(
@@ -153,10 +154,15 @@ class _HomePageState extends State<HomePage> {
           selectedItemColor: Colors.black,
           currentIndex: _selectedIndex,
           onTap: (int index) {
-            print("Nani");
             setState(() {
               _selectedIndex = index;
             });
+            if (_selectedIndex == 1) {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => GradesPage()));
+            } else if (_selectedIndex == 2) {
+              Navigator.pop(context);
+            }
           },
           type: BottomNavigationBarType.fixed,
           items: [
@@ -178,29 +184,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-// class HomePage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: "Sharpie",
-//       theme: ThemeData(
-//         fontFamily: "Josefin",
-//         scaffoldBackgroundColor: Colors.red[300],
-//       ),
-//       debugShowCheckedModeBanner: false,
-//       home: Scaffold(
-//         appBar: AppBar(
-//           title: Text('Grades'),
-//         ),
-//         body: SafeArea(
-//           child: Stack(
-//             children: <Widget>[
-//               GradeList(),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

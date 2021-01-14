@@ -24,11 +24,6 @@ class MashovCredentials extends StatelessWidget {
           child: Stack(
             //There's probably a better way to do this than Scaffold<SafeArea<Stack
             children: <Widget>[
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                alignment: Alignment.topLeft,
-                child: LangBtn(),
-              ),
               Align(
                 alignment: Alignment(0.9, -0.95),
                 child: Image(height: 60, image: AssetImage(Images.logoLoc)),
@@ -186,11 +181,10 @@ class _MashovFormState extends State<MashovForm> {
   }
 }
 
-class LangBtn extends StatefulWidget {
+/*class LangBtn extends StatefulWidget {
   @override
   _LangBtnState createState() => _LangBtnState();
 }
-
 class _LangBtnState extends State<LangBtn> {
   //Is the button for english and hebrew.
   String altLanguage = "עברית";
@@ -211,4 +205,4 @@ class _LangBtnState extends State<LangBtn> {
       },
     );
   }
-}
+}*/
