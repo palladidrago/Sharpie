@@ -155,15 +155,17 @@ class _MashovFormState extends State<MashovForm> {
                     child: ElevatedButton(
                       child: Text('Submit'),
                       onPressed: () async {
-                        print("LOL");
                         // Validate returns true if the form is valid, or false
+                        
                         if (_formKey.currentState.validate()) {
+                          print("username: ${nameController.text}, password:${passwordController.text}");
                           //If the form is valid(what does it check??), saves the username and password to secure storage,
                           //and saves the user as logged in.
                           await mashovController.login(nameController.text,
                               passwordController.text, "540484", "2021");
                           mashovLoginSave(nameController.text,passwordController.text); //Saves login, saves as logged in.
                         }
+                        
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => HomePage()),
