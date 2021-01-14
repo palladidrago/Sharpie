@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'grades.dart';
+import 'navBar.dart';
 
 class GradesPage extends StatefulWidget {
   @override
@@ -13,6 +13,7 @@ class _GradesPageState extends State<GradesPage> {
     return MaterialApp(
         home: Scaffold(
       body: GradeList(),
+      bottomNavigationBar: NavBar(index: 1),
     ));
   }
 }
