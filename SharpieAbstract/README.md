@@ -1,17 +1,6 @@
-# TODO:
-
-* Introduction screen.
-* Home screen: next test, tabs: one for subjects, one for assignments, grades.
-* Make grades page look better, calculate average of grades on a test with firestore.
-* Wrong mashov credential handling
-* Add weekly yondi excel sheet.
-* Make the whole experience pretty af.
-* Get Or working.(Or fire him).
-
-
 # Distant future
 
-* Optional subjects selection screen if didn't do Mashov
+* Add weekly yondi excel sheet.
 * Individual subject screen(with tests and assignments).
 * Moodle inegration. 
 * Settings screen, to change preferences.
@@ -24,7 +13,7 @@
 * Mashov login screen.
 * Save to phone storage(With preferences api)
 * Give Davido something to do.
-
 * Only show Mashov login screen if not already logged in.
 * Know if first time opening the app, with shared preferences.
 * Tell teacher we started.
+

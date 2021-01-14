@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 //Self imports.
 import 'package:sharpie/services/assets.dart';
@@ -163,7 +161,10 @@ class _MashovFormState extends State<MashovForm> {
                           //and saves the user as logged in.
                           await mashovController.login(nameController.text,
                               passwordController.text, "540484", "2021");
-                          mashovLoginSave(nameController.text,passwordController.text); //Saves login, saves as logged in.
+                          mashovLoginSave(
+                            nameController.text,
+                            passwordController.text,
+                          ); //Saves login, saves as logged in.
                         }
                         
                         Navigator.push(
@@ -180,7 +181,6 @@ class _MashovFormState extends State<MashovForm> {
         ));
   }
 }
-
 
 // To Do: actually do something with this button.
 class LangBtn extends StatefulWidget {

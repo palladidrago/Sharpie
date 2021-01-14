@@ -6,19 +6,17 @@ import 'dart:async';
 import 'package:sharpie/screens/intro/mashov_credentials.dart';
 import 'package:sharpie/services/assets.dart';
 import 'package:sharpie/screens/home.dart';
-import 'package:sharpie/services/helpers.dart';
 
 class Splash extends StatelessWidget {
   static Future<Widget> nextPage() async {
-    
     SharedPreferences _prefs = await SharedPreferences.getInstance();
-    _prefs.setBool("isLogged",false);
+    _prefs.setBool("isLogged", false);
     var iL = _prefs.getBool("isLogged");
     if (iL == false || iL == null) {
       return MashovCredentials();
     } else if (iL == true) {
       //Add login for loading.
-      
+
       return HomePage();
     }
     return null;
