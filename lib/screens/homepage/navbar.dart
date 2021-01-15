@@ -22,7 +22,7 @@ class _NavBarState extends State<NavBar> {
       selectedItemColor: Colors.black,
       currentIndex: _index,
       onTap: (int tappedIndex) {
-        // need to make this work more efficiently 
+        // need to make this work more efficiently
         if (tappedIndex == 1 && _index != 1) {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => GradesPage()));

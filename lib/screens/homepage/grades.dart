@@ -11,14 +11,14 @@ class GradeList extends StatefulWidget {
 
 class _GradeListState extends State<GradeList> {
   var comment;
-  var _grades = _getGrades(); 
+  var _grades = _getGrades();
   static Future<List<Grade>> _getGrades() async {
     //Returns list of grades.
     var mashovController = Controller();
     final storage = new FlutterSecureStorage();
     await mashovController.login(await storage.read(key: "mashovUsername"),
         await storage.read(key: "mashovPassword"), "540484", "2021");
-    return await mashovController.getGradeList(); 
+    return await mashovController.getGradeList();
   }
 
   @override
@@ -31,10 +31,9 @@ class _GradeListState extends State<GradeList> {
             padding: EdgeInsets.all(16.0),
             itemCount: snapshot.data.length,
             itemBuilder: (context, i) {
-
-              var gr = snapshot.data[snapshot.data.length-i-1];
+              var gr = snapshot.data[snapshot.data.length - i - 1];
               dynamic gradeVal = gr.grade ?? 0;
-              
+
               Color gradeColor = (gradeVal >= 85)
                   ? Colors.green
                   : (gradeVal > 55 ? Colors.grey : Colors.red);
@@ -52,55 +51,46 @@ class _GradeListState extends State<GradeList> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        margin: EdgeInsets.all(15),
-                        child:Column(
-                        mainAxisAlignment:MainAxisAlignment.center,
-                        children: [
-                        Text(
-                          "${gradeVal}",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: gradeColor,
-                            )),
-                        Text(
-                          "${gr.eventDate}",
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.normal,
-                              color: Colors.grey,
-                            )
-                          ),
-                        ])
-                      ),
+                          margin: EdgeInsets.all(15),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("$gradeVal",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: gradeColor,
+                                    )),
+                                Text("${gr.eventDate}",
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.grey,
+                                    )),
+                              ])),
                       Container(
-                        margin: EdgeInsets.all(12),
-                        child:Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text("${gr.subjectName}",
-                              textAlign: TextAlign.end,
-                              textDirection: TextDirection.rtl,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              )
-                            ),
-                          Text(
-                            "${gr.gradingEvent}",
-                              textAlign: TextAlign.end,
-                              textDirection: TextDirection.rtl,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey,
-                            )
-                          )
-                        ],
-                      )
-                    )
-                  ],
-                )
-              );
+                          margin: EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text("${gr.subjectName}",
+                                  textAlign: TextAlign.end,
+                                  textDirection: TextDirection.rtl,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                              Text("${gr.gradingEvent}",
+                                  textAlign: TextAlign.end,
+                                  textDirection: TextDirection.rtl,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey,
+                                  ))
+                            ],
+                          ))
+                    ],
+                  ));
             },
           );
         } else if (snapshot.hasError) {
@@ -115,9 +105,9 @@ class _GradeListState extends State<GradeList> {
   }
 }
 
-class GradeBox extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
- 
-  }
-}
+// class GradeBox extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+
+//   }
+// }
