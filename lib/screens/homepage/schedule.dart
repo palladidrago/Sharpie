@@ -3,22 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class Lesson {
-  String desc;
-  String time;
-}
+// class Lesson {
+//   String desc;
+//   String time;
+// }
+
+//We should merge the 2 schedule classes. 
 
 class ScheduleRaw extends StatefulWidget {
   @override
   _ScheduleRawState createState() => _ScheduleRawState();
 }
 
-// class lesson for future use idk
 
 class _ScheduleRawState extends State<ScheduleRaw> {
+  //Contains the raw schedule
   @override
   Widget build(BuildContext context) {
-    // what we'll actually do instead of [1,2,3,4,5] is make a list<lesson> and feed this sexy animal with data from artyeshiva
+    //Make a list<lesson> and feed it with data from artyeshiva
     var lessons = [1, 2, 3, 4, 5, 6];
     return ListView.builder(
       itemCount: lessons.length,
