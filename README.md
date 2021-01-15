@@ -20,9 +20,4 @@ We promise to never disappoint our customers and users.
 * Fix the app logo.
 * Make the mashov not send an email because it thinks I'm logging in from a new device.
 
-# Done: 
-
-* Move the language button to the settings page (or remove it entirely)
-* Sort out the whole navbar mess.
-* Home screen: fix tabs, add assignment tab. 
 
