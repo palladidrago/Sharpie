@@ -4,12 +4,12 @@ import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-class GradeList extends StatefulWidget {
+class GradePage extends StatefulWidget {
   @override
-  _GradeListState createState() => _GradeListState();
+  _GradePageState createState() => _GradePageState();
 }
 
-class _GradeListState extends State<GradeList> {
+class _GradePageState extends State<GradePage> {
   var comment;
   var _grades = _getGrades();
   static Future<List<Grade>> _getGrades() async {

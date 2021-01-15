@@ -14,7 +14,7 @@ class Splash extends StatelessWidget {
       return MashovCredentials();
     } else if (iL == true) {
       //Add login for loading.
-      return HomePage();
+      return Home();
     }
     return null;
   }

@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-//Self imports///
-import 'package:sharpie/screens/homepage/grades_page.dart';
-import 'package:sharpie/screens/homepage/home.dart';
-import 'package:sharpie/screens/homepage/settings.dart';
-
 class NavBar extends StatefulWidget {
   final index;
   NavBar({@required this.index});
@@ -22,17 +17,6 @@ class _NavBarState extends State<NavBar> {
       selectedItemColor: Colors.black,
       currentIndex: _index,
       onTap: (int tappedIndex) {
-        // need to make this work more efficiently
-        if (tappedIndex == 1 && _index != 1) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => GradesPage()));
-        } else if (tappedIndex == 0 && _index != 0) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePage()));
-        } else if (tappedIndex == 2 && _index != 2) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SettingsPage()));
-        }
         setState(() {
           _index = tappedIndex;
         });
