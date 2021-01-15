@@ -12,7 +12,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-      body: Center(child:Text("Settings")),
+      body: Center(child: Text("Settings")),
       bottomNavigationBar: NavBar(index: 2),
     ));
   }
