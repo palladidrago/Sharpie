@@ -9,6 +9,7 @@
 
 # Done
 
+* Wrong mashov credential handling.
 * Get grades with mashovapi
 * Mashov login screen.
 * Save to phone storage(With preferences api)
