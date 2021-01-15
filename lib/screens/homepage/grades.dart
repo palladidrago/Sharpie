@@ -38,59 +38,71 @@ class _GradeListState extends State<GradeList> {
                   ? Colors.green
                   : (gradeVal > 55 ? Colors.grey : Colors.red);
               return Container(
-                  //"${gr.grade}---${gr.gradingEvent}, מקצוע: ${gr.subjectName}",
-                  height: 75,
-                  margin: EdgeInsets.only(top: 15),
-                  decoration: BoxDecoration(
-                    color: Colors.blue.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  width: MediaQuery.of(context).size.width - 10,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                          margin: EdgeInsets.all(15),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("$gradeVal",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: gradeColor,
-                                    )),
-                                Text("${gr.eventDate}",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.grey,
-                                    )),
-                              ])),
-                      Container(
-                          margin: EdgeInsets.all(12),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text("${gr.subjectName}",
-                                  textAlign: TextAlign.end,
-                                  textDirection: TextDirection.rtl,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                              Text("${gr.gradingEvent}",
-                                  textAlign: TextAlign.end,
-                                  textDirection: TextDirection.rtl,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey,
-                                  ))
-                            ],
-                          ))
-                    ],
-                  ));
+                //"${gr.grade}---${gr.gradingEvent}, מקצוע: ${gr.subjectName}",
+                height: 75,
+                margin: EdgeInsets.only(top: 15),
+                decoration: BoxDecoration(
+                  color: Colors.blue.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                width: MediaQuery.of(context).size.width - 10,
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(15),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "$gradeVal",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: gradeColor,
+                            ),
+                          ),
+                          Text(
+                            "${gr.eventDate}",
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "${gr.subjectName}",
+                            textAlign: TextAlign.end,
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            "${gr.gradingEvent}",
+                            textAlign: TextAlign.end,
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
             },
           );
         } else if (snapshot.hasError) {

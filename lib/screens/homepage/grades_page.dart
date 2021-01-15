@@ -13,9 +13,13 @@ class _GradesPageState extends State<GradesPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-      body: GradeList(),
-      bottomNavigationBar: NavBar(index: 1),
-    ));
+      home: Scaffold(
+        body: SafeArea(
+          child: GradeList(),
+        ),
+        bottomNavigationBar: NavBar(index: 1),
+      ),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
