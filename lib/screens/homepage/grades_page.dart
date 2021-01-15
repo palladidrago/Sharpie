@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'grades.dart';
-import 'navBar.dart';
+//Self imports
+import 'package:sharpie/screens/homepage/grades.dart';
+import 'package:sharpie/screens/homepage/navbar.dart';
 
 class GradesPage extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class GradesPage extends StatefulWidget {
 }
 
 class _GradesPageState extends State<GradesPage> {
+  //Wrapper for grade page with navbar
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

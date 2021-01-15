@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import '../services/assets.dart';
-import 'grades.dart';
-import 'schedule.dart';
-import 'gradesPage.dart';
-import 'navBar.dart';
+//Self imports//
+import 'package:sharpie/services/assets.dart';
+import 'package:sharpie/screens/homepage/grades.dart';
+import 'package:sharpie/screens/homepage/schedule.dart';
+import 'package:sharpie/screens/homepage/grades_page.dart';
+import 'package:sharpie/screens/homepage/navbar.dart';
 
-//Actual home page.
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -94,15 +95,6 @@ class _HomePageState extends State<HomePage> {
                                 }
                               },
                             ),
-                            // Text(
-                            //   "!שלום מאיר",
-                            //   style: TextStyle(
-                            //     fontSize: 30,
-                            //     fontWeight: FontWeight.w900,
-                            //     color: Colors.blue[900],
-                            //     //Color(0XFF343E87
-                            //   ),
-                            // ),
                             SizedBox(
                               height: 5,
                             ),

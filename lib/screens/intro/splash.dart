@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:splashscreen/splashscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:async';
-//Self imports
-import 'package:sharpie/screens/intro/mashov_credentials.dart';
-import 'package:sharpie/services/assets.dart';
-import 'package:sharpie/screens/home.dart';
+import 'package:splashscreen/splashscreen.dart';
+import 'mashov_credentials.dart';
+import '../../services/assets.dart';
+import '../homepage/home.dart';
 
 class Splash extends StatelessWidget {
   static Future<Widget> nextPage() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
-    _prefs.setBool("isLogged", false);
+    // _prefs.setBool("isLogged", false);
     var iL = _prefs.getBool("isLogged");
     if (iL == false || iL == null) {
       return MashovCredentials();
     } else if (iL == true) {
       //Add login for loading.
-
       return HomePage();
     }
     return null;

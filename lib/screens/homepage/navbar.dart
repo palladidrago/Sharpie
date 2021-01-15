@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'gradesPage.dart';
-import 'home.dart';
-import 'settings.dart';
+//Self imports///
+import 'package:sharpie/screens/homepage/grades_page.dart';
+import 'package:sharpie/screens/homepage/home.dart';
+import 'package:sharpie/screens/homepage/settings.dart';
 
 class NavBar extends StatefulWidget {
   final index;
