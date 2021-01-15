@@ -6,9 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sharpie/services/assets.dart';
 import 'package:sharpie/screens/homepage/grades.dart';
 import 'package:sharpie/screens/homepage/schedule.dart';
-import 'package:sharpie/screens/homepage/grades_page.dart';
 import 'package:sharpie/screens/homepage/navbar.dart';
-
 
 class HomePage extends StatefulWidget {
   @override
