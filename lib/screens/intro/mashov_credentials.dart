@@ -175,7 +175,7 @@ class _MashovFormState extends State<MashovForm> {
                             builder: (_) => new AlertDialog(
                               title: Text("Error"),
                               content: Text(
-                                  "The id or password is wrong. try again"),
+                                  "The id or password is wrong. Please try again"),
                               actions: <Widget>[
                                 FlatButton(
                                   child: Text('OK'),
