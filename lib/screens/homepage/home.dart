@@ -4,7 +4,6 @@ import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 //Self imports//
 import 'package:sharpie/services/assets.dart';
-import 'package:sharpie/screens/homepage/grades.dart';
 import 'package:sharpie/screens/homepage/schedule.dart';
 import 'package:sharpie/screens/homepage/navbar.dart';
 
