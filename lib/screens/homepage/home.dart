@@ -120,21 +120,9 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 300,
-                    ),
-                    child: Schedule(),
-                  ),
+                  child: Schedule(),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 550,
-                ),
-                child: GradeList(),
-              ),
-              // GradeList(),
             ],
           ),
           bottomNavigationBar: NavBar(index: 0)),
