@@ -118,7 +118,6 @@ class _ScheduleState extends State<Schedule> {
       title: "Home",
       theme: ThemeData(
         fontFamily: "Josefin",
-        scaffoldBackgroundColor: Colors.red[300],
       ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -208,12 +207,7 @@ class _ScheduleState extends State<Schedule> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(50),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 300,
-                  ),
-                  child: ScheduleRaw(),
-                ),
+                child: ScheduleRaw(),
               ),
             ),
           ],
