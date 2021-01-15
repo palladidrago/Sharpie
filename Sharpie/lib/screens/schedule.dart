@@ -18,15 +18,16 @@ class _ScheduleState extends State<Schedule> {
     return ListView.builder(
       itemCount: lessons.length,
       itemBuilder: (context, index) {
-        return Container(
+        // container naturally takes all the width so i had to wrap with align
+        return Align(child :Container(
           // the time will be lessons[index].time, the class description will be lessons[index].desc
           margin: EdgeInsets.only(top: 20),
           padding: EdgeInsets.only(left: 30),
           height: 75,
-          width: MediaQuery.of(context).size.width - 150,
+          width: MediaQuery.of(context).size.width - 100,
           decoration: BoxDecoration(
             color: Color(0xFFF9F9FB),
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -81,7 +82,7 @@ class _ScheduleState extends State<Schedule> {
               ),
             ],
           ),
-        );
+        ));
       },
     );
   }

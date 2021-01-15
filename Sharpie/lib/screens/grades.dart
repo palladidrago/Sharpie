@@ -33,7 +33,7 @@ class _GradeListState extends State<GradeList> {
             itemCount: snapshot.data.length,
             itemBuilder: (context, i) {
               var gr = snapshot.data[i];
-              Color gradeColor = (gr.grade > 85)
+              Color gradeColor = (gr.grade >= 85)
                   ? Colors.green
                   : (gr.grade > 55 ? Colors.grey : Colors.red);
               return Container(
