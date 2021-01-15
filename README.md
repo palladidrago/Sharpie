@@ -14,7 +14,6 @@ We promise to never disappoint our customers and users.
 * Introduction screens(Hello this is sharpie this is what the app does.)
 * Fix the main page, credentials don't work at all.
 * Wrong mashov credential handling.
-* Move the language button to the settings page (or remove it entirely)
 * Make mashov login optional, only when trying to see the grade page and isn't logged in.
 * Make grades page look better, calculate average of grades on a test with firestore.
 * Figure out a proper day to get the daily schedule (With regurarly updated excel sheet or json in the database maybe)
@@ -23,6 +22,7 @@ We promise to never disappoint our customers and users.
 
 # Done: 
 
+* Move the language button to the settings page (or remove it entirely)
 * Sort out the whole navbar mess.
 * Home screen: fix tabs, add assignment tab. 
 
