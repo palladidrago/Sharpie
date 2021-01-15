@@ -10,8 +10,11 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-      body: Center(child: Text("Settings")),
-    ));
+      home: Scaffold(
+        body: Center(
+          child: Text("Settings"),
+        ),
+      ),
+    );
   }
 }
