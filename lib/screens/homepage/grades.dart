@@ -11,19 +11,18 @@ class GradeList extends StatefulWidget {
 
 class _GradeListState extends State<GradeList> {
   var comment;
-  var _grades = _getGrades(); //Saves list of grades in variable
+  var _grades = _getGrades(); 
   static Future<List<Grade>> _getGrades() async {
     //Returns list of grades.
     var mashovController = Controller();
     final storage = new FlutterSecureStorage();
     await mashovController.login(await storage.read(key: "mashovUsername"),
         await storage.read(key: "mashovPassword"), "540484", "2021");
-    return await mashovController.getGradeList(); //Returns list of Grades
+    return await mashovController.getGradeList(); 
   }
 
   @override
   Widget build(BuildContext context) {
-    //Build an ugly list of grades.
     return FutureBuilder<List<Grade>>(
       future: _grades,
       builder: (BuildContext context, AsyncSnapshot<List<Grade>> snapshot) {
@@ -32,10 +31,13 @@ class _GradeListState extends State<GradeList> {
             padding: EdgeInsets.all(16.0),
             itemCount: snapshot.data.length,
             itemBuilder: (context, i) {
-              var gr = snapshot.data[i];
-              Color gradeColor = (gr.grade >= 85)
+
+              var gr = snapshot.data[snapshot.data.length-i-1];
+              dynamic gradeVal = gr.grade ?? 0;
+              
+              Color gradeColor = (gradeVal >= 85)
                   ? Colors.green
-                  : (gr.grade > 55 ? Colors.grey : Colors.red);
+                  : (gradeVal > 55 ? Colors.grey : Colors.red);
               return Container(
                   //"${gr.grade}---${gr.gradingEvent}, מקצוע: ${gr.subjectName}",
                   height: 75,
@@ -50,24 +52,27 @@ class _GradeListState extends State<GradeList> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        // i added containers so we can add some edge insets
                         margin: EdgeInsets.all(15),
                         child:Column(
                         mainAxisAlignment:MainAxisAlignment.center,
                         children: [
-                        Text("${gr.grade}",
+                        Text(
+                          "${gradeVal}",
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: gradeColor,
                             )),
-                        Text("${gr.eventDate}",
+                        Text(
+                          "${gr.eventDate}",
                             style: TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.normal,
                               color: Colors.grey,
-                            )),
-                      ])),
+                            )
+                          ),
+                        ])
+                      ),
                       Container(
                         margin: EdgeInsets.all(12),
                         child:Column(
@@ -79,22 +84,23 @@ class _GradeListState extends State<GradeList> {
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                              )),
-                          Text("${gr.gradingEvent}",
+                              )
+                            ),
+                          Text(
+                            "${gr.gradingEvent}",
                               textAlign: TextAlign.end,
                               textDirection: TextDirection.rtl,
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.grey,
-                              )
-               
+                            )
                           )
-
-                          // grade desc and grade subject
                         ],
-                      ))
-                    ],
-                  ));
+                      )
+                    )
+                  ],
+                )
+              );
             },
           );
         } else if (snapshot.hasError) {
@@ -106,5 +112,12 @@ class _GradeListState extends State<GradeList> {
         }
       },
     );
+  }
+}
+
+class GradeBox extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+ 
   }
 }
