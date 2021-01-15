@@ -11,9 +11,7 @@ We promise to never disappoint our customers and users.
 
 # TODO:
 
-* Sort out the whole navbar mess.
 * Introduction screens(Hello this is sharpie this is what the app does.)
-* Home screen: fix tabs, add assignment tab. 
 * Fix the main page, credentials don't work at all.
 * Wrong mashov credential handling.
 * Move the language button to the settings page (or remove it entirely)
@@ -22,3 +20,9 @@ We promise to never disappoint our customers and users.
 * Figure out a proper day to get the daily schedule (With regurarly updated excel sheet or json in the database maybe)
 * Fix the app logo.
 * Make the mashov not send an email because it thinks I'm logging in from a new device.
+
+# Done: 
+
+* Sort out the whole navbar mess.
+* Home screen: fix tabs, add assignment tab. 
+
