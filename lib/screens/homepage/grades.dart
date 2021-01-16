@@ -40,14 +40,15 @@ class _GradePageState extends State<GradePage> {
                 padding: EdgeInsets.all(16.0),
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, i) {
-                  var gr = snapshot.data[snapshot.data.length - i - 1];
-                  dynamic gradeVal = gr.grade ?? 0;
+                  var grades = snapshot.data;
+                  var grade = grades[grades.length - i - 1];
+
+                  dynamic gradeVal = grade.grade ?? 0;
 
                   Color gradeColor = (gradeVal >= 85)
                       ? Colors.green
                       : (gradeVal > 55 ? Colors.grey : Colors.red);
                   return Container(
-                    //"${gr.grade}---${gr.gradingEvent}, מקצוע: ${gr.subjectName}",
                     height: 75,
                     margin: EdgeInsets.only(top: 15),
                     decoration: BoxDecoration(
@@ -58,12 +59,12 @@ class _GradePageState extends State<GradePage> {
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                      children: <Widget>[
                         Container(
                           margin: EdgeInsets.all(15),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                            children: <Widget>[
                               Text(
                                 "$gradeVal",
                                 style: TextStyle(
@@ -73,7 +74,7 @@ class _GradePageState extends State<GradePage> {
                                 ),
                               ),
                               Text(
-                                "${gr.eventDate}",
+                                "${grade.eventDate}",
                                 style: TextStyle(
                                   fontSize: 10,
                                   fontWeight: FontWeight.normal,
@@ -84,23 +85,20 @@ class _GradePageState extends State<GradePage> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.all(12),
+                          margin: const EdgeInsets.all(15),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
+                            children: <Widget>[
                               Text(
-                                "${gr.subjectName}",
-                                textAlign: TextAlign.end,
-                                textDirection: TextDirection.rtl,
+                                "${grade.subjectName}",
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               Text(
-                                "${gr.gradingEvent}",
-                                textAlign: TextAlign.end,
-                                textDirection: TextDirection.rtl,
+                                "${grade.gradingEvent}",
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.grey,
