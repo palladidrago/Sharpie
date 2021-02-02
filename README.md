@@ -11,6 +11,7 @@ We promise to never disappoint our customers and users.
 
 # TODO:
 
+* Megamot and Kapsulot. See down below.
 * Introduction screens(Hello this is sharpie this is what the app does.)
 * Fix the main page, credentials don't work at all.
 * Wrong mashov credential handling.
@@ -26,3 +27,16 @@ We promise to never disappoint our customers and users.
 * Sort out the whole navbar mess.
 * Home screen: fix tabs, add assignment tab. 
 
+# Megamot: 
+
+* Physics, Chemistry, Kalkala/Minhal Asakim
+* Math 3,4,5 
+* English 4,5-1,5-2
+* Music
+* Computers
+* Art
+
+# Kapsulot:
+* Purple
+* Orange
+* Green
