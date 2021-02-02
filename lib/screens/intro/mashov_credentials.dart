@@ -13,25 +13,27 @@ class MashovCredentials extends StatelessWidget {
       title: "Sharpie",
       theme: ThemeData(
         fontFamily: "Josefin",
-        scaffoldBackgroundColor: Colors.red[300],
+        primaryColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Mashov Login'),
-        ),
-        body: SafeArea(
-          child: Stack(
-            //There's probably a better way to do this than Scaffold<SafeArea<Stack
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Align(
-                alignment: Alignment(0.9, -0.95),
-                child: Image(height: 60, image: AssetImage(Images.logoLoc)),
+              Text('Mashov Login'),
+              Image(
+                height: 45,
+                image: AssetImage(Images.logoLoc),
               ),
-              MashovForm(),
             ],
           ),
+          backgroundColor: Color(0xFFECF677),
         ),
+        body: SafeArea(
+          child: MashovForm(),
+        ),
+        backgroundColor: Colors.red[300],
       ),
     );
   }
@@ -68,16 +70,14 @@ class _MashovFormState extends State<MashovForm> {
         mainAxisAlignment: MainAxisAlignment.center, //Centers the form
         children: <Widget>[
           Container(
-            margin: const EdgeInsets.all(30.0),
-            padding: const EdgeInsets.all(50.0),
+            margin: const EdgeInsets.all(30),
+            padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 40),
             decoration: BoxDecoration(
               border: Border.all(
                 color: Colors.blue[300],
                 width: 3.0,
               ),
-              borderRadius: BorderRadius.all(
-                Radius.circular(10.0),
-              ),
+              borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
             child: Column(
               children: <Widget>[
@@ -85,13 +85,14 @@ class _MashovFormState extends State<MashovForm> {
                   controller: nameController,
                   decoration: InputDecoration(
                     labelText: "Username(Id)",
-                    icon: const Padding(
+                    icon: Padding(
                       padding: const EdgeInsets.only(top: 10.0),
-                      child: const Icon(Icons.person),
+                      child: const Icon(
+                        Icons.person,
+                        size: 22,
+                      ),
                     ),
-                    labelStyle: TextStyle(
-                      color: Colors.white,
-                    ),
+                    labelStyle: TextStyle(color: Colors.white),
                     fillColor: Colors.white,
                     focusedBorder: OutlineInputBorder(
                       borderSide:
@@ -101,49 +102,48 @@ class _MashovFormState extends State<MashovForm> {
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter some text';
+                      return 'Please enter your Id';
                     }
                     return null;
                   },
                 ),
-                Divider(
-                  height: 50,
-                  thickness: 2,
-                ),
+                Padding(padding: const EdgeInsets.symmetric(vertical: 10)),
                 TextFormField(
                   controller: passwordController,
                   decoration: InputDecoration(
                     labelText: "Password",
-                    icon: const Padding(
+                    icon: Padding(
                       padding: const EdgeInsets.only(top: 10.0),
-                      child: const Icon(Icons.lock),
+                      child: const Icon(
+                        Icons.lock,
+                        size: 22,
+                      ),
                     ),
-                    labelStyle: TextStyle(
-                      color: Colors.white,
+                    suffixIcon: IconButton(
+                      onPressed: _toggle,
+                      icon: Icon(
+                        _obscureText ? Icons.visibility : Icons.visibility_off,
+                      ),
                     ),
+                    labelStyle: TextStyle(color: Colors.white),
                     fillColor: Colors.white,
                     focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.white, width: 2.0),
+                      borderSide: const BorderSide(
+                        color: Colors.white,
+                        width: 2.0,
+                      ),
                       borderRadius: BorderRadius.circular(25.0),
                     ),
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter some text';
+                      return 'Please enter your password';
                     }
                     return null;
                   },
                   obscureText: _obscureText,
                 ),
-                new FlatButton(
-                  onPressed: _toggle,
-                  child: new Text(_obscureText ? "Show" : "Hide"),
-                ),
-                Divider(
-                  height: 50,
-                  thickness: 5,
-                ),
+                Padding(padding: const EdgeInsets.symmetric(vertical: 20)),
                 Container(
                   child: ElevatedButton(
                     child: Text('Submit'),

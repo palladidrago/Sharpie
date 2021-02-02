@@ -27,8 +27,8 @@ class Splash extends StatelessWidget {
         fontFamily: "Josefin",
       ),
       home: SplashScreen(
-        navigateAfterFuture: Splash.nextPage(),
         seconds: 1,
+        navigateAfterFuture: Splash.nextPage(),
         routeName: "/",
         gradientBackground: Gradient.lerp(
           LinearGradient(

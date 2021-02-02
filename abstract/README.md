@@ -9,6 +9,7 @@
 
 # Done
 
+* Wrong mashov credential handling.
 * Get grades with mashovapi
 * Mashov login screen.
 * Save to phone storage(With preferences api)
@@ -16,4 +17,7 @@
 * Only show Mashov login screen if not already logged in.
 * Know if first time opening the app, with shared preferences.
 * Tell teacher we started.
+* Move the language button to the settings page (or remove it entirely)
+* Sort out the whole navbar mess.
+* Home screen: fix tabs, add assignment tab. 
 
