@@ -146,53 +146,52 @@ class _MashovFormState extends State<MashovForm> {
                 Padding(padding: const EdgeInsets.symmetric(vertical: 20)),
                 Container(
                   child: ElevatedButton(
-                    child: Text('Submit'),
-                    onPressed: () async {
-                      // Validate returns true if the form is valid, or false
-                      // otherwise.
-                      if (_formKey.currentState.validate()) {
+                      child: Text('Submit'),
+                      onPressed: () async {
+                        // Validate returns true if the form is valid, or false
+                        // otherwise.
+                        // if (_formKey.currentState.validate()) {
                         SharedPreferences _prefs =
                             await SharedPreferences.getInstance();
                         final storage = new FlutterSecureStorage();
-                        try {
-                          await mashovController.login(nameController.text,
-                              passwordController.text, "540484", "2021");
-                          await storage.write(
-                              key: "mashovUsername",
-                              value: nameController.text);
-                          await storage.write(
-                              key: "mashovPassword",
-                              value: passwordController.text);
-                          await _prefs.setBool('isLogged', true);
+                        // try {
+                        await mashovController.login(nameController.text,
+                            passwordController.text, "540484", "2021");
+                        await storage.write(
+                            key: "mashovUsername", value: nameController.text);
+                        await storage.write(
+                            key: "mashovPassword",
+                            value: passwordController.text);
+                        await _prefs.setBool('isLogged', true);
 
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Home()),
-                          );
-                        } catch (e) {
-                          showDialog(
-                            context: context,
-                            builder: (_) => new AlertDialog(
-                              title: Text("Error"),
-                              content: Text(
-                                  "The id or password is wrong. Please try again"),
-                              actions: <Widget>[
-                                FlatButton(
-                                  child: Text('OK'),
-                                  onPressed: () {
-                                    nameController.text = '';
-                                    passwordController.text = '';
-                                    Navigator.of(context, rootNavigator: true)
-                                        .pop('dialog');
-                                  },
-                                )
-                              ],
-                            ),
-                          );
-                        }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Home()),
+                        );
+                        // } catch (e) {
+                        //   showDialog(
+                        //     context: context,
+                        //     builder: (_) => new AlertDialog(
+                        //       title: Text("Error"),
+                        //       content: Text(
+                        //           "The id or password is wrong. Please try again"),
+                        //       actions: <Widget>[
+                        //         TextButton(
+                        //           child: Text('OK'),
+                        //           onPressed: () {
+                        //             nameController.text = '';
+                        //             passwordController.text = '';
+                        //             Navigator.of(context, rootNavigator: true)
+                        //                 .pop('dialog');
+                        //           },
+                        //         )
+                        //       ],
+                        //     ),
+                        //   );
+                        // }
                       }
-                    },
-                  ),
+                      // },
+                      ),
                 ),
               ],
             ),

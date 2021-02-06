@@ -11,6 +11,7 @@ class GradePage extends StatefulWidget {
 
 class _GradePageState extends State<GradePage> {
   var comment;
+  static List<int> gradesList = [];
   var _grades = _getGrades();
   static Future<List<Grade>> _getGrades() async {
     //Returns list of grades.
@@ -21,15 +22,51 @@ class _GradePageState extends State<GradePage> {
     return await mashovController.getGradeList();
   }
 
+  static var _avgGrades = _gradesAverage();
+  static Future<double> _gradesAverage() async {
+    var grades = await _getGrades();
+    dynamic gradeVal;
+
+    for (var gr in grades) {
+      gradeVal = gr.grade ?? 0;
+      gradesList.add(gradeVal);
+    }
+
+    double average =
+        gradesList.fold(0, (prv, curr) => prv + curr) / gradesList.length;
+
+    return double.parse((average).toStringAsFixed(2));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Grades'),
-        // the background color could vary
-        // if the average grade of the student is below e.g., 60
-        // then the background color would be red and if above e.g., 80 etc...
-        backgroundColor: Colors.grey,
+        title: FutureBuilder<double>(
+          future: _avgGrades,
+          builder: (BuildContext context, AsyncSnapshot<double> snapshot) {
+            if (snapshot.hasData) {
+              var avgGrades = snapshot.data;
+              return Text(
+                "ממוצה: ${avgGrades.toString()}",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
+                  background: Paint()
+                    ..strokeWidth = MediaQuery.of(context).size.width
+                    ..color = avgGrades >= 85
+                        ? Colors.green
+                        : (avgGrades > 55 ? Colors.grey : Colors.red)
+                    ..style = PaintingStyle.stroke,
+                ),
+              );
+            } else if (snapshot.hasError) {
+              return Text("Error");
+            } else {
+              return Text("Loading...");
+            }
+          },
+        ),
       ),
       body: SafeArea(
         child: FutureBuilder<List<Grade>>(
@@ -41,9 +78,9 @@ class _GradePageState extends State<GradePage> {
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, i) {
                   var grades = snapshot.data;
-                  var grade = grades[grades.length - i - 1];
+                  var _grade = grades[grades.length - i - 1];
 
-                  dynamic gradeVal = grade.grade ?? 0;
+                  dynamic gradeVal = _grade.grade ?? 0;
 
                   Color gradeColor = (gradeVal >= 85)
                       ? Colors.green
@@ -74,7 +111,7 @@ class _GradePageState extends State<GradePage> {
                                 ),
                               ),
                               Text(
-                                "${grade.eventDate}",
+                                "${_grade.eventDate}",
                                 style: TextStyle(
                                   fontSize: 10,
                                   fontWeight: FontWeight.normal,
@@ -91,14 +128,14 @@ class _GradePageState extends State<GradePage> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
                               Text(
-                                "${grade.subjectName}",
+                                "${_grade.subjectName}",
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               Text(
-                                "${grade.gradingEvent}",
+                                "${_grade.gradingEvent}",
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.grey,
@@ -125,10 +162,3 @@ class _GradePageState extends State<GradePage> {
     );
   }
 }
-
-// class GradeBox extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-
-//   }
-// }

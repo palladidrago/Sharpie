@@ -21,6 +21,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "Home Page",
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: tabs[_currentIndex],

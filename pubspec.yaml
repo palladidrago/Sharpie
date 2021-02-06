@@ -38,7 +38,7 @@ dependencies:
   # flutter_dotenv: ^2.1.0
 
 dev_dependencies:
-  flutter_launcher_icons: "^0.8.0"
+  flutter_launcher_icons: ^0.8.1
   flutter_test:
     sdk: flutter
 
@@ -46,6 +46,7 @@ flutter_icons:
   android: true
   ios: true
   image_path: "assets/Sharpie.png"
+  adaptive_icon_background: "#ff6961"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
