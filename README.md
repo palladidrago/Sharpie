@@ -11,6 +11,7 @@ We promise to never disappoint our customers and users.
 
 # TODO:
 
+* Megamot and Kapsulot. See down below.
 * Introduction screens(Hello this is sharpie this is what the app does.)
 * In mashov_credentials, the owl logo is broken if you try to type.
 * Fix the main page, credentials don't work in release version.
@@ -21,3 +22,16 @@ We promise to never disappoint our customers and users.
 * Make the mashov not send an email because it thinks I'm logging in from a new device.
 
 
+# Megamot: 
+
+* Physics, Chemistry, Kalkala/Minhal Asakim
+* Math 3,4,5 
+* English 4,5-1,5-2
+* Music
+* Computers
+* Art
+
+# Kapsulot:
+* Purple
+* Orange
+* Green

@@ -1,4 +1,3 @@
-//TODO: Make appwide shared mashov controller, already logged in.
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'package:sharpie/services/helpers.dart';
 
