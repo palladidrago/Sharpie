@@ -14,8 +14,6 @@ We promise to never disappoint our customers and users.
 * Assignments.
 * Megamot and Kapsulot. See down below.
 * Introduction screens(Hello this is sharpie this is what the app does.)
-* In mashov_credentials, the owl logo is broken if you try to type.
-* Fix the main page, credentials don't work in release version.
 * Make mashov login optional, only when trying to see the grade page and isn't logged in.
 * Make grades page look better, calculate average of grades on a test with firestore.
 * Figure out a proper day to get the daily schedule (With regurarly updated excel sheet or json in the database maybe)
@@ -37,3 +35,10 @@ We promise to never disappoint our customers and users.
 * Purple
 * Orange
 * Green
+
+# Done: 
+
+* Fix the main page, credentials don't work in release version.
+* In mashov_credentials, the owl logo is broken if you try to type(Workaround).
+
+
