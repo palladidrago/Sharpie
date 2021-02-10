@@ -11,6 +11,7 @@ We promise to never disappoint our customers and users.
 
 # TODO:
 
+* Assignments.
 * Megamot and Kapsulot. See down below.
 * Introduction screens(Hello this is sharpie this is what the app does.)
 * In mashov_credentials, the owl logo is broken if you try to type.
