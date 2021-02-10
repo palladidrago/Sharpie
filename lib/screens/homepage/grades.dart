@@ -1,8 +1,10 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import '../../services/mac_credentials.dart' as credentials;
 
 class GradePage extends StatefulWidget {
   @override
@@ -17,8 +19,13 @@ class _GradePageState extends State<GradePage> {
     //Returns list of grades.
     var mashovController = Controller();
     final storage = new FlutterSecureStorage();
-    await mashovController.login(await storage.read(key: "mashovUsername"),
-        await storage.read(key: "mashovPassword"), "540484", "2021");
+    if (!Platform.isMacOS) {
+      await mashovController.login(await storage.read(key: "mashovUsername"),
+          await storage.read(key: "mashovPassword"), "540484", "2021");
+    } else {
+      await mashovController.login(
+          credentials.user_name, credentials.password, "540484", "2021");
+    }
     return await mashovController.getGradeList();
   }
 

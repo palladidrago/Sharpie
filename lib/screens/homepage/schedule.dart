@@ -1,20 +1,21 @@
-import 'package:sharpie/services/assets.dart';
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:sharpie/services/assets.dart';
+import '../../services/mac_credentials.dart' as credentials;
 
 // class Lesson {
 //   String desc;
 //   String time;
 // }
 
-//We should merge the 2 schedule classes. 
+//We should merge the 2 schedule classes.
 
 class ScheduleRaw extends StatefulWidget {
   @override
   _ScheduleRawState createState() => _ScheduleRawState();
 }
-
 
 class _ScheduleRawState extends State<ScheduleRaw> {
   //Contains the raw schedule
@@ -109,8 +110,13 @@ class _ScheduleState extends State<Schedule> {
     //Returns list of grades.
     var mashovController = Controller();
     final storage = new FlutterSecureStorage();
-    await mashovController.login(await storage.read(key: "mashovUsername"),
-        await storage.read(key: "mashovPassword"), "540484", "2021");
+    if (!Platform.isMacOS) {
+      await mashovController.login(await storage.read(key: "mashovUsername"),
+          await storage.read(key: "mashovPassword"), "540484", "2021");
+    } else {
+      await mashovController.login(
+          credentials.user_name, credentials.password, "540484", "2021");
+    }
     return await mashovController.getName(); //Returns list of Grades
   }
 

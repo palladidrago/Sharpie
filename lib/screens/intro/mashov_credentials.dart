@@ -1,3 +1,4 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -157,12 +158,14 @@ class _MashovFormState extends State<MashovForm> {
                         try {
                           await mashovController.login(nameController.text,
                               passwordController.text, "540484", "2021");
-                          await storage.write(
-                              key: "mashovUsername",
-                              value: nameController.text);
-                          await storage.write(
-                              key: "mashovPassword",
-                              value: passwordController.text);
+                          if (!Platform.isMacOS) {
+                            await storage.write(
+                                key: "mashovUsername",
+                                value: nameController.text);
+                            await storage.write(
+                                key: "mashovPassword",
+                                value: passwordController.text);
+                          }
                           await _prefs.setBool('isLogged', true);
 
                           Navigator.push(
@@ -170,6 +173,7 @@ class _MashovFormState extends State<MashovForm> {
                             MaterialPageRoute(builder: (context) => Home()),
                           );
                         } catch (e) {
+                          print(e);
                           showDialog(
                             context: context,
                             builder: (_) => new AlertDialog(
