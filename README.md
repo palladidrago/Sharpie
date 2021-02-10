@@ -11,16 +11,16 @@ We promise to never disappoint our customers and users.
 
 # TODO:
 
+* Fix the app logo. (Or shazam)
+* Figure out a proper day to get the daily schedule (With regurarly updated excel sheet or json in the database maybe)
+* Calculate average of grades on a test with firestore.
+* Save login so name doesn't have to load every time (Or save just the name).
 * Assignments.
 * Megamot and Kapsulot. See down below.
-* Introduction screens(Hello this is sharpie this is what the app does.)
 * Make mashov login optional, only when trying to see the grade page and isn't logged in.
-* Make grades page look better, calculate average of grades on a test with firestore.
-* Figure out a proper day to get the daily schedule (With regurarly updated excel sheet or json in the database maybe)
-* Fix the app logo. (Or shazam)
-* Make the mashov not send an email because it thinks I'm logging in from a new device.
-* Save login so name doesn't have to load every time.
-
+* Introduction screens(Hello this is sharpie this is what the app does.)
+* Make the mashov not send an email because it thinks I'm logging in from a new device (Possible?).
+* Cache grades (Useful?).
 
 # Megamot: 
 
