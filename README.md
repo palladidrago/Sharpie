@@ -21,6 +21,7 @@ We promise to never disappoint our customers and users.
 * Figure out a proper day to get the daily schedule (With regurarly updated excel sheet or json in the database maybe)
 * Fix the app logo. (Or shazam)
 * Make the mashov not send an email because it thinks I'm logging in from a new device.
+* Save login so name doesn't have to load every time.
 
 
 # Megamot: 
