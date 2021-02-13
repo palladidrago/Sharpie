@@ -173,7 +173,6 @@ class _MashovFormState extends State<MashovForm> {
                             MaterialPageRoute(builder: (context) => Home()),
                           );
                         } catch (e) {
-                          print(e);
                           showDialog(
                             context: context,
                             builder: (_) => new AlertDialog(
