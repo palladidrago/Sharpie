@@ -1,35 +1,41 @@
 {
   "project_info": {
-    "project_number": "399386402673",
-    "firebase_url": "https://sharpie-dom.firebaseio.com",
-    "project_id": "sharpie-dom",
-    "storage_bucket": "sharpie-dom.appspot.com"
+    "project_number": "154072991296",
+    "project_id": "dom-sharpie",
+    "storage_bucket": "dom-sharpie.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:399386402673:android:9961ed6f1044e209b1a0d0",
+        "mobilesdk_app_id": "1:154072991296:android:245bffc0a1c2f22f0b81a5",
         "android_client_info": {
-          "package_name": "com.dom.sharpie_app"
+          "package_name": "com.dom.sharpie"
         }
       },
       "oauth_client": [
         {
-          "client_id": "399386402673-cm9nohhl0319fuktj8oghc4kdentccm2.apps.googleusercontent.com",
+          "client_id": "154072991296-afesbr6rc3d0693mp19nemtoo9klj7uo.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBAtrcGuoswqGF7ZKyVpNg6UfQnthdbiGg"
+          "current_key": "AIzaSyDujibUUI2FVSofJ_JOk748pAg0nfDYY_g"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "399386402673-cm9nohhl0319fuktj8oghc4kdentccm2.apps.googleusercontent.com",
+              "client_id": "154072991296-afesbr6rc3d0693mp19nemtoo9klj7uo.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "154072991296-76mkvh9gsvsdi4f48d3863ujaqe9db1s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dom.sharpie"
+              }
             }
           ]
         }

@@ -6,7 +6,7 @@ class DatabaseServie {
   Future getDocs() async {
     firestoreInstance.collection("homework").get().then((querySnapshot) {
       querySnapshot.docs.forEach((result) {
-        print(result.data());
+        return result.data();
       });
     });
   }
