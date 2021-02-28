@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sharpie/services/assets.dart';
-import '../../services/mac_credentials.dart' as credentials;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // class Lesson {
 //   String desc;
@@ -115,7 +115,7 @@ class _ScheduleState extends State<Schedule> {
           await storage.read(key: "mashovPassword"), "540484", "2021");
     } else {
       await mashovController.login(
-          credentials.user_name, credentials.password, "540484", "2021");
+          env['USERNAME'], env['PASSWORD'], "540484", "2021");
     }
     return await mashovController.getName(); //Returns list of Grades
   }

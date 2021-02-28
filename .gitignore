@@ -43,4 +43,3 @@ app.*.map.json
 
 # Env file with secret stuff
 .env*
-lib/services/mac_credentials.dart

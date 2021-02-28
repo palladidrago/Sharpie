@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import '../../services/mac_credentials.dart' as credentials;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class GradePage extends StatefulWidget {
   @override
@@ -24,7 +24,7 @@ class _GradePageState extends State<GradePage> {
           await storage.read(key: "mashovPassword"), "540484", "2021");
     } else {
       await mashovController.login(
-          credentials.user_name, credentials.password, "540484", "2021");
+          env['USERNAME'], env['PASSWORD'], "540484", "2021");
     }
     return await mashovController.getGradeList();
   }
