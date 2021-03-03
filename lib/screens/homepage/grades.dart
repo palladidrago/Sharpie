@@ -82,7 +82,6 @@ class _GradePageState extends State<GradePage> {
             if (snapshot.hasData) {
               return ListView.builder(
                 padding: EdgeInsets.all(16.0),
-                itemCount: snapshot.data.length,
                 itemBuilder: (context, i) {
                   var grades = snapshot.data;
                   var _grade = grades[grades.length - i - 1];

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 //Self imports//
-import 'package:sharpie/screens/homepage/schedule.dart';
-import 'package:sharpie/screens/homepage/grades.dart';
-import 'package:sharpie/screens/homepage/settings.dart';
+import 'schedule.dart';
+import 'grades.dart';
+import 'settings.dart';
+import 'homework.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -15,6 +16,7 @@ class _HomeState extends State<Home> {
   final tabs = [
     Schedule(),
     GradePage(),
+    Homework(),
     Settings(),
   ];
   int _currentIndex = 0;
@@ -39,16 +41,20 @@ class _HomeState extends State<Home> {
           type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(
-              label: "",
-              icon: Icon(Icons.home),
+              label: "Home",
+              icon: Icon(Icons.home_outlined),
             ),
             BottomNavigationBarItem(
-              label: "",
+              label: "Grades",
               icon: Icon(Icons.assessment_outlined),
             ),
             BottomNavigationBarItem(
-              label: "",
-              icon: Icon(Icons.settings),
+              label: "Homework",
+              icon: Icon(Icons.school_outlined),
+            ),
+            BottomNavigationBarItem(
+              label: "Settings",
+              icon: Icon(Icons.settings_outlined),
             ),
           ],
         ),
