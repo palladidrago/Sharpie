@@ -5,15 +5,8 @@ import 'package:firebase_core/firebase_core.dart';
 class FirestoreDB {
   static final firestore = FirebaseFirestore.instance;
 
-  static Future<QuerySnapshot> getHomework() async {
+  static Future<QuerySnapshot> getDBdata(String collectionPath) async {
     await Firebase.initializeApp();
-    return await firestore.collection("homework").get();
+    return await firestore.collection(collectionPath).get();
   }
-  // static Future<DocumentSnapshot> getHomework() async {
-  //   await Firebase.initializeApp();
-  //   return await firestore
-  //       .collection("homework")
-  //       .doc("RwpZdTbiO2z29SGF5Lea")
-  //       .get();
-  // }
 }

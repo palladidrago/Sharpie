@@ -22,38 +22,40 @@ class HomeworkDB extends StatefulWidget {
 }
 
 class _HomeworkDBState extends State<HomeworkDB> {
-  static var _homework = FirestoreDB.getHomework();
+  static var _homework = FirestoreDB.getDBdata("homework");
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("test"),
+        title: Text("Homework"),
       ),
-      body: FutureBuilder(
-        future: _homework,
-        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            var homework;
-            snapshot.data.docs.forEach((homeworkData) {
-              homework = homeworkData.data();
-            });
+      body: SafeArea(
+        child: FutureBuilder<QuerySnapshot>(
+          future: _homework,
+          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              var homework;
+              snapshot.data.docs.forEach((homeworkData) {
+                homework = homeworkData.data();
+              });
 
-            return Column(
-              children: [
-                Container(
-                  child: Text(
-                    "Math: ${homework['math']}\nEnglish: ${homework['english']}",
-                    style: TextStyle(fontSize: 20),
+              return Column(
+                children: [
+                  Container(
+                    child: Text(
+                      "Math: ${homework['math']}\nEnglish: ${homework['english']}",
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
-                ),
-              ],
-            );
-          } else if (snapshot.connectionState == ConnectionState.none) {
-            return Text("No data");
-          }
-          return CircularProgressIndicator();
-        },
+                ],
+              );
+            } else if (snapshot.connectionState == ConnectionState.none) {
+              return Text("No data");
+            }
+            return CircularProgressIndicator();
+          },
+        ),
       ),
     );
   }
