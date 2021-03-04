@@ -35,7 +35,7 @@ dependencies:
 
   # Check that you have this dependency (added in the previous step)
   firebase_core: ^0.7.0
-  cloud_firestore: ^0.16.0
+  cloud_firestore: ^0.16.0+1
 
   simple_mashovapi: ^0.0.7
   flutter_spinkit: ^5.0.0

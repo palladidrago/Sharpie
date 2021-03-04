@@ -42,10 +42,8 @@ class _HomeworkDBState extends State<HomeworkDB> {
             return Column(
               children: [
                 Container(
-                  height: 27,
                   child: Text(
-                    "Homework: $homework",
-                    overflow: TextOverflow.fade,
+                    "Math: ${homework['math']}\nEnglish: ${homework['english']}",
                     style: TextStyle(fontSize: 20),
                   ),
                 ),

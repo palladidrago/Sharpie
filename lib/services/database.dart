@@ -7,6 +7,13 @@ class FirestoreDB {
 
   static Future<QuerySnapshot> getHomework() async {
     await Firebase.initializeApp();
-    return await FirebaseFirestore.instance.collection("homework").get();
+    return await firestore.collection("homework").get();
   }
+  // static Future<DocumentSnapshot> getHomework() async {
+  //   await Firebase.initializeApp();
+  //   return await firestore
+  //       .collection("homework")
+  //       .doc("RwpZdTbiO2z29SGF5Lea")
+  //       .get();
+  // }
 }
