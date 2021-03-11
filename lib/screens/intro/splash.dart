@@ -6,9 +6,15 @@ import '../../services/assets.dart';
 import '../homepage/home.dart';
 
 class Splash extends StatelessWidget {
-  static Future<Widget> nextPage() async {
+  Splash({Key key, this.setIsLogged = true}) : super(key: key);
+
+  final bool setIsLogged;
+
+  Future<Widget> nextPage() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
-    // _prefs.setBool("isLogged", false);
+    if (!this.setIsLogged) {
+      _prefs.setBool("isLogged", false);
+    }
     var iL = _prefs.getBool("isLogged");
     if (iL == false || iL == null) {
       return MashovCredentials();
@@ -28,7 +34,7 @@ class Splash extends StatelessWidget {
       ),
       home: SplashScreen(
         seconds: 1,
-        navigateAfterFuture: Splash.nextPage(),
+        navigateAfterFuture: nextPage(),
         routeName: "/",
         gradientBackground: Gradient.lerp(
           LinearGradient(

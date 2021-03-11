@@ -1,9 +1,14 @@
 import 'dart:io' show Platform;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:sharpie/services/assets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import '../../components/pill_container.dart';
+import 'package:intl/intl.dart' as format;
+import '../../services/assets.dart';
+import '../../services/database.dart';
 
 // class Lesson {
 //   String desc;
@@ -18,82 +23,46 @@ class ScheduleRaw extends StatefulWidget {
 }
 
 class _ScheduleRawState extends State<ScheduleRaw> {
+  static var _schedule = FirestoreDB.getDocumentData(
+    "schedule",
+    format.DateFormat('EEEE').format(DateTime.now()).toLowerCase(),
+  );
+
   //Contains the raw schedule
   @override
   Widget build(BuildContext context) {
-    //Make a list<lesson> and feed it with data from artyeshiva
-    var lessons = [1, 2, 3, 4, 5, 6];
-    return ListView.builder(
-      itemCount: lessons.length,
-      itemBuilder: (context, index) {
-        // container naturally takes all the width so i had to wrap with align
-        return Align(
-          child: Container(
-            // the time will be lessons[index].time, the class description will be lessons[index].desc
-            margin: EdgeInsets.only(top: 20),
-            padding: EdgeInsets.only(left: 30),
-            height: 75,
-            width: MediaQuery.of(context).size.width - 100,
-            decoration: BoxDecoration(
-              color: Color(0xFFF9F9FB),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "8:45",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "AM",
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w300,
-                          color: Colors.grey),
-                    ),
-                  ],
+    return FutureBuilder<DocumentSnapshot>(
+      future: _schedule,
+      builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          List<dynamic> subject = [];
+          var schedule = snapshot.data.data();
+          //Make a list<lesson> and feed it with data from artyeshiva
+          var lessons = List.filled(schedule.length, []);
+          var iterator = schedule.values.iterator;
+          while (iterator.moveNext()) {
+            var curr = iterator.current;
+            subject.add(curr.toString().split(','));
+          }
+
+          return ListView.builder(
+            itemCount: lessons.length,
+            itemBuilder: (context, index) {
+              // container naturally takes all the width so i had to wrap with align
+              return Align(
+                child: ScheduleComponent(
+                  leftUp: "${subject[index][1]}",
+                  leftDown: "AM",
+                  rightUp: "${subject[index][0]}",
+                  rightDown: "${subject[index][2]}",
                 ),
-                SizedBox(
-                  width: 20,
-                ),
-                Container(
-                  // the line seperating time of lesson and description
-                  height: 75,
-                  width: 1,
-                  color: Colors.grey.withOpacity(0.5),
-                ),
-                SizedBox(
-                  width: 30,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "מתמטיקה(5)",
-                      style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.blueGrey),
-                    ),
-                    Text(
-                      "המורה אירנה {יא1,יא2}",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.blueGrey,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
+              );
+            },
+          );
+        } else if (snapshot.connectionState == ConnectionState.none) {
+          return Text("No data");
+        }
+        return SpinKitDoubleBounce(color: Colors.red.withOpacity(0.3));
       },
     );
   }

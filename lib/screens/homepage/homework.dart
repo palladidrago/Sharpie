@@ -22,7 +22,7 @@ class HomeworkDB extends StatefulWidget {
 }
 
 class _HomeworkDBState extends State<HomeworkDB> {
-  static var _homework = FirestoreDB.getDBdata("homework");
+  static var _homework = FirestoreDB.getCollectionData("homework");
 
   @override
   Widget build(BuildContext context) {

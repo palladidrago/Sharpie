@@ -82,9 +82,10 @@ class _GradePageState extends State<GradePage> {
             if (snapshot.hasData) {
               return ListView.builder(
                 padding: EdgeInsets.all(16.0),
-                itemBuilder: (context, i) {
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
                   var grades = snapshot.data;
-                  var _grade = grades[grades.length - i - 1];
+                  var _grade = grades[grades.length - index - 1];
 
                   dynamic gradeVal = _grade.grade ?? 0;
 
