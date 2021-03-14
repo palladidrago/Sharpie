@@ -14,90 +14,17 @@ import '../../services/database.dart';
 //   String time;
 // }
 
-//We should merge the 2 schedule classes.
-
-class ScheduleRaw extends StatefulWidget {
-  @override
-  _ScheduleRawState createState() => _ScheduleRawState();
-}
-
-class _ScheduleRawState extends State<ScheduleRaw> {
-  static var _schedule = FirestoreDB.getDocumentData(
-    "schedule",
-    format.DateFormat('EEEE').format(DateTime.now()).toLowerCase(),
-  );
-
-  //Contains the raw schedule
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<DocumentSnapshot>(
-      future: _schedule,
-      builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          List<dynamic> subject = [];
-          var schedule = snapshot.data.data();
-          //Make a list<lesson> and feed it with data from artyeshiva
-          var lessons = List.filled(schedule.length, []);
-          var iterator = schedule.values.iterator;
-          while (iterator.moveNext()) {
-            var curr = iterator.current;
-            subject.add(curr.toString().split(','));
-          }
-
-          return Container(
-            margin: EdgeInsets.only(
-              left: MediaQuery.of(context).size.width * 0.1,
-              top: 160,
-              right: MediaQuery.of(context).size.width * 0.1,
-            ),
-            child: ListView.builder(
-              itemCount: lessons.length,
-              itemBuilder: (context, index) {
-                try {
-                  return Container(
-                    child: ScheduleComponent(
-                      rightUp: "${subject[index][0]}",
-                      leftUp: "${subject[index][1]}",
-                      rightDown: "${subject[index][2]}",
-                      leftDown: "AM",
-                      rightUpSize: 25,
-                    ),
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                  );
-                } catch (e) {
-                  return Container(
-                    margin: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.1,
-                      right: MediaQuery.of(context).size.width * 0.1,
-                      top: 160,
-                    ),
-                    child: ScheduleComponent(
-                      rightUp: e.toString(),
-                      leftUp: "Error",
-                      rightDown: "",
-                      leftDown: "",
-                      rightUpSize: 15,
-                    ),
-                  );
-                }
-              },
-            ),
-          );
-        } else if (snapshot.connectionState == ConnectionState.none) {
-          return Text("No data");
-        }
-        return SpinKitDoubleBounce(color: Colors.red.withOpacity(0.3));
-      },
-    );
-  }
-}
-
 class Schedule extends StatefulWidget {
   @override
   _ScheduleState createState() => _ScheduleState();
 }
 
 class _ScheduleState extends State<Schedule> {
+  static var _schedule = FirestoreDB.getDocumentData(
+    "schedule",
+    format.DateFormat('EEEE').format(DateTime.now()).toLowerCase(),
+  );
+
   var _name = _getName(); //Saves list of grades in variable
   static Future<Name> _getName() async {
     //Returns list of grades.
@@ -115,93 +42,144 @@ class _ScheduleState extends State<Schedule> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Home",
-      theme: ThemeData(
-        fontFamily: "Josefin",
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Stack(
-          children: <Widget>[
-            Container(
-              height: 150,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.blue[50],
-                    Colors.grey[100],
-                  ],
-                ),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(50),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(top: 24, left: 24),
-                        child: Image.asset(
-                          'assets/Sharpie.png',
-                          height: 90,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(top: 40, right: 40),
-                        child: Column(
-                          children: <Widget>[
-                            FutureBuilder<Name>(
-                              future: _name,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<Name> snapshot) {
-                                if (snapshot.hasData) {
-                                  var name = snapshot.data;
-                                  return Text(
-                                    "שלום!\n${name.firstName} ${name.lastName}",
-                                    textDirection: TextDirection.rtl,
-                                    style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.w900,
-                                      color: Colors.blue[900],
-                                      //Color(0XFF343E87
-                                    ),
-                                  );
-                                } else if (snapshot.hasError) {
-                                  return Text("Error");
-                                } else {
-                                  return Text('Awaiting result...');
-                                }
-                              },
-                            ),
-                            Text(
-                              "👇 מערכת להיום מוצגת למטה",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0XFF343E87),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          Container(
+            height: 150,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.blue[100],
+                  Colors.lightBlue[50],
+                  Colors.grey[200],
                 ],
               ),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(55),
+                bottomRight: Radius.circular(30),
+              ),
             ),
-            Container(
-              child: ScheduleRaw(),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.only(top: 24, left: 24),
+                      child: Image.asset(
+                        'assets/Sharpie.png',
+                        height: 90,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.only(top: 40, right: 40),
+                      child: Column(
+                        children: <Widget>[
+                          FutureBuilder<Name>(
+                            future: _name,
+                            builder: (BuildContext context,
+                                AsyncSnapshot<Name> snapshot) {
+                              if (snapshot.hasData) {
+                                var name = snapshot.data;
+                                return Text(
+                                  "שלום!\n${name.firstName} ${name.lastName}",
+                                  textDirection: TextDirection.rtl,
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.blue[900],
+                                    //Color(0XFF343E87
+                                  ),
+                                );
+                              } else if (snapshot.hasError) {
+                                return Text("Error");
+                              } else {
+                                return Text('Awaiting result...');
+                              }
+                            },
+                          ),
+                          Text(
+                            "👇 מערכת להיום מוצגת למטה",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0XFF343E87),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          FutureBuilder<DocumentSnapshot>(
+            future: _schedule,
+            builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                List<dynamic> subject = [];
+                var schedule = snapshot.data.data();
+                //Make a list<lesson> and feed it with data from artyeshiva
+                var lessons = List.filled(schedule.length, []);
+                var iterator = schedule.values.iterator;
+                while (iterator.moveNext()) {
+                  var curr = iterator.current;
+                  subject.add(curr.toString().split(','));
+                }
+
+                return Container(
+                  margin: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width * 0.1,
+                    top: 160,
+                    right: MediaQuery.of(context).size.width * 0.1,
+                  ),
+                  child: ListView.builder(
+                    itemCount: lessons.length,
+                    itemBuilder: (context, index) {
+                      try {
+                        return Container(
+                          child: ScheduleComponent(
+                            rightUp: "${subject[index][0]}",
+                            leftUp: "${subject[index][1]}",
+                            rightDown: "${subject[index][2]}",
+                            leftDown: "AM",
+                            rightUpSize: 25,
+                          ),
+                          margin: EdgeInsets.symmetric(vertical: 10),
+                        );
+                      } catch (e) {
+                        return Container(
+                          margin: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width * 0.1,
+                            right: MediaQuery.of(context).size.width * 0.1,
+                            top: 160,
+                          ),
+                          child: ScheduleComponent(
+                            rightUp: e.toString(),
+                            leftUp: "Error",
+                            rightDown: "",
+                            leftDown: "",
+                            rightUpSize: 15,
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                );
+              } else if (snapshot.connectionState == ConnectionState.none) {
+                return Text("No data");
+              }
+              return SpinKitDoubleBounce(color: Colors.red.withOpacity(0.3));
+            },
+          ),
+        ],
       ),
     );
   }

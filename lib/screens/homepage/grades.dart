@@ -54,17 +54,20 @@ class _GradePageState extends State<GradePage> {
           builder: (BuildContext context, AsyncSnapshot<double> snapshot) {
             if (snapshot.hasData) {
               var avgGrades = snapshot.data;
-              return Text(
-                "ממוצה: ${avgGrades.toString()}",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20,
-                  background: Paint()
-                    ..strokeWidth = MediaQuery.of(context).size.width
-                    ..color = avgGrades >= 85
-                        ? Colors.green
-                        : (avgGrades > 55 ? Colors.grey : Colors.red)
-                    ..style = PaintingStyle.stroke,
+              return Container(
+                padding: EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: avgGrades >= 80
+                      ? Colors.green
+                      : (avgGrades >= 55 ? Colors.grey : Colors.red),
+                ),
+                child: Text(
+                  "ממוצה: ${avgGrades.toString()}",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20,
+                  ),
                 ),
               );
             } else if (snapshot.hasError) {
@@ -74,6 +77,7 @@ class _GradePageState extends State<GradePage> {
             }
           },
         ),
+        backgroundColor: Colors.grey[400],
       ),
       body: SafeArea(
         child: FutureBuilder<List<Grade>>(
