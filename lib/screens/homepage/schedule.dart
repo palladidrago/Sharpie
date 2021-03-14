@@ -42,6 +42,18 @@ class _ScheduleState extends State<Schedule> {
 
   @override
   Widget build(BuildContext context) {
+    var hour = DateTime.now().hour;
+    var greetings;
+    if (hour >= 7 && hour < 12) {
+      greetings = "בוקר טוב";
+    } else if (hour >= 12 && hour < 18) {
+      greetings = "צהריים טובים";
+    } else if (hour >= 18 && hour <= 23) {
+      greetings = "ערב טוב";
+    } else {
+      greetings = "לילה טוב";
+    }
+
     return Stack(
       children: <Widget>[
         Container(
@@ -87,7 +99,7 @@ class _ScheduleState extends State<Schedule> {
                             if (snapshot.hasData) {
                               var name = snapshot.data;
                               return Text(
-                                "שלום!\n${name.firstName} ${name.lastName}",
+                                "$greetings\n${name.firstName} ${name.lastName}",
                                 textDirection: TextDirection.rtl,
                                 style: TextStyle(
                                   fontSize: 25,

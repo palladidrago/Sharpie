@@ -2,26 +2,12 @@ import 'package:flutter/material.dart';
 import '../../services/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Homework extends StatelessWidget {
-  // This widget is the root of your application.
+class Homework extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomeworkDB(),
-    );
-  }
+  _HomeworkState createState() => _HomeworkState();
 }
 
-class HomeworkDB extends StatefulWidget {
-  @override
-  _HomeworkDBState createState() => _HomeworkDBState();
-}
-
-class _HomeworkDBState extends State<HomeworkDB> {
+class _HomeworkState extends State<Homework> {
   static var _homework = FirestoreDB.getCollectionData("homework");
 
   @override

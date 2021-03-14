@@ -6,12 +6,12 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class GradePage extends StatefulWidget {
+class Grades extends StatefulWidget {
   @override
-  _GradePageState createState() => _GradePageState();
+  _GradesState createState() => _GradesState();
 }
 
-class _GradePageState extends State<GradePage> {
+class _GradesState extends State<Grades> {
   var comment;
   static List<int> gradesList = [];
   var _grades = _getGrades();
@@ -93,9 +93,9 @@ class _GradePageState extends State<GradePage> {
 
                   dynamic gradeVal = _grade.grade ?? 0;
 
-                  Color gradeColor = (gradeVal >= 85)
+                  Color gradeColor = gradeVal >= 80
                       ? Colors.green
-                      : (gradeVal > 55 ? Colors.grey : Colors.red);
+                      : (gradeVal >= 55 ? Colors.grey : Colors.red);
                   return Container(
                     height: 75,
                     margin: EdgeInsets.only(top: 15),

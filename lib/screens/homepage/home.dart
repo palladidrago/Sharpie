@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
-//Self imports//
 import 'schedule.dart';
 import 'grades.dart';
 import 'settings.dart';
@@ -13,9 +11,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final tabs = [
+  final List<Widget> tabs = [
     Schedule(),
-    GradePage(),
+    Grades(),
     Homework(),
     Settings(),
   ];
@@ -24,7 +22,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Home Page",
-      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: "Josefin",
+      ),
       home: Scaffold(
         body: tabs[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
@@ -59,6 +59,7 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
