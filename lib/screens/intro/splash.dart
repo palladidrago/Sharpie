@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'mashov_credentials.dart';
-import '../../services/assets.dart';
 import '../homepage/home.dart';
 
 class Splash extends StatelessWidget {
@@ -51,8 +50,9 @@ class Splash extends StatelessWidget {
           ),
           0.5,
         ),
-        image: Image(
-          image: AssetImage(Images.logoTLoc),
+        image: Image.asset(
+          'assets/SharpieText.png',
+          fit: BoxFit.cover,
         ),
         loadingText: Text("Loading"),
         photoSize: 150.0,

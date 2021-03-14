@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
-import '../../services/assets.dart';
 import '../homepage/home.dart';
 
 class MashovCredentials extends StatelessWidget {
@@ -23,9 +22,10 @@ class MashovCredentials extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Text('Mashov Login'),
-              Image(
+              Image.asset(
+                'assets/Sharpie.png',
                 height: 45,
-                image: AssetImage(Images.logoLoc),
+                fit: BoxFit.cover,
               ),
             ],
           ),
