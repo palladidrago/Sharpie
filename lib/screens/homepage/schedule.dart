@@ -7,7 +7,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../components/pill_container.dart';
 import 'package:intl/intl.dart' as format;
-import '../../services/assets.dart';
 import '../../services/database.dart';
 
 // class Lesson {
@@ -45,19 +44,44 @@ class _ScheduleRawState extends State<ScheduleRaw> {
             subject.add(curr.toString().split(','));
           }
 
-          return ListView.builder(
-            itemCount: lessons.length,
-            itemBuilder: (context, index) {
-              // container naturally takes all the width so i had to wrap with align
-              return Align(
-                child: ScheduleComponent(
-                  leftUp: "${subject[index][1]}",
-                  leftDown: "AM",
-                  rightUp: "${subject[index][0]}",
-                  rightDown: "${subject[index][2]}",
-                ),
-              );
-            },
+          return Container(
+            margin: EdgeInsets.only(
+              left: MediaQuery.of(context).size.width * 0.1,
+              top: 160,
+              right: MediaQuery.of(context).size.width * 0.1,
+            ),
+            child: ListView.builder(
+              itemCount: lessons.length,
+              itemBuilder: (context, index) {
+                try {
+                  return Container(
+                    child: ScheduleComponent(
+                      rightUp: "${subject[index][0]}",
+                      leftUp: "${subject[index][1]}",
+                      rightDown: "${subject[index][2]}",
+                      leftDown: "AM",
+                      rightUpSize: 25,
+                    ),
+                    margin: EdgeInsets.symmetric(vertical: 10),
+                  );
+                } catch (e) {
+                  return Container(
+                    margin: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width * 0.1,
+                      right: MediaQuery.of(context).size.width * 0.1,
+                      top: 160,
+                    ),
+                    child: ScheduleComponent(
+                      rightUp: e.toString(),
+                      leftUp: "Error",
+                      rightDown: "",
+                      leftDown: "",
+                      rightUpSize: 15,
+                    ),
+                  );
+                }
+              },
+            ),
           );
         } else if (snapshot.connectionState == ConnectionState.none) {
           return Text("No data");
@@ -101,91 +125,80 @@ class _ScheduleState extends State<Schedule> {
         body: Stack(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.only(left: 40),
+              height: 150,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0xFFD4E7FE),
-                    Color(0xFFF9F9FB),
+                    Colors.blue[50],
+                    Colors.grey[100],
                   ],
                 ),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(50),
+                ),
               ),
-              child: Column(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  SizedBox(
-                    height: 50,
-                  ),
-                  Row(
+                  Column(
                     children: <Widget>[
                       Container(
-                        width: 70,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(Images.logoLoc),
-                          ),
+                        margin: EdgeInsets.only(top: 24, left: 24),
+                        child: Image.asset(
+                          'assets/Sharpie.png',
+                          height: 90,
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      SizedBox(
-                        width: 50,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: <Widget>[
-                          FutureBuilder<Name>(
-                            future: _name,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<Name> snapshot) {
-                              if (snapshot.hasData) {
-                                var name = snapshot.data;
-                                return Text(
-                                  "שלום!\n${name.firstName} ${name.lastName}",
-                                  textDirection: TextDirection.rtl,
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.w900,
-                                    color: Colors.blue[900],
-                                    //Color(0XFF343E87
-                                  ),
-                                );
-                              } else if (snapshot.hasError) {
-                                return Text("Error");
-                              } else {
-                                return Text('Awaiting result...');
-                              }
-                            },
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            "👇 מערכת להיום מוצגת למטה",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0XFF343E87),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(top: 40, right: 40),
+                        child: Column(
+                          children: <Widget>[
+                            FutureBuilder<Name>(
+                              future: _name,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<Name> snapshot) {
+                                if (snapshot.hasData) {
+                                  var name = snapshot.data;
+                                  return Text(
+                                    "שלום!\n${name.firstName} ${name.lastName}",
+                                    textDirection: TextDirection.rtl,
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.blue[900],
+                                      //Color(0XFF343E87
+                                    ),
+                                  );
+                                } else if (snapshot.hasError) {
+                                  return Text("Error");
+                                } else {
+                                  return Text('Awaiting result...');
+                                }
+                              },
                             ),
-                          ),
-                        ],
+                            Text(
+                              "👇 מערכת להיום מוצגת למטה",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0XFF343E87),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ],
               ),
             ),
-            Positioned(
-              top: 160,
-              child: Container(
-                height: MediaQuery.of(context).size.height - 150,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: ScheduleRaw(),
-              ),
+            Container(
+              child: ScheduleRaw(),
             ),
           ],
         ),

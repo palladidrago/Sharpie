@@ -1,10 +1,16 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'screens/intro/splash.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:window_size/window_size.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  if (Platform.isMacOS) {
+    setWindowMinSize(Size(900, 600));
+    setWindowMaxSize(Size(1200, 750));
+  }
   await Firebase.initializeApp();
   await DotEnv.load();
   runApp(Sharpie());

@@ -29,8 +29,8 @@ class _HomeState extends State<Home> {
         body: tabs[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           elevation: 0,
-          backgroundColor: Color(0xFFF9F9FB),
-          unselectedItemColor: Colors.grey,
+          backgroundColor: Colors.grey[200],
+          unselectedItemColor: Colors.grey[600],
           selectedItemColor: Colors.black,
           currentIndex: _currentIndex,
           onTap: (int tappedIndex) {

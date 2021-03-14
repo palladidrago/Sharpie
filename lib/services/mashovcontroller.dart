@@ -1,5 +1,5 @@
 import 'package:simple_mashovapi/simple_mashovapi.dart';
-import 'package:sharpie/services/helpers.dart';
+import '../services/helpers.dart';
 
 Controller sharedMashovController;
 void logSharedMController([String semel = "540484"]) async {
