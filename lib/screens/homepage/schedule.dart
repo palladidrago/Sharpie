@@ -1,12 +1,12 @@
 import 'dart:io' show Platform;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart' as format;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../components/pill_container.dart';
-import 'package:intl/intl.dart' as format;
 import '../../services/database.dart';
 
 // class Lesson {
@@ -131,59 +131,54 @@ class _ScheduleState extends State<Schedule> {
             ],
           ),
         ),
-        FutureBuilder<DocumentSnapshot>(
-          future: _schedule,
-          builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              List<dynamic> subject = [];
-              var schedule = snapshot.data.data();
-              //Make a list<lesson> and feed it with data from artyeshiva
-              var lessons = List.filled(schedule.length, []);
-              var iterator = schedule.values.iterator;
-              while (iterator.moveNext()) {
-                var curr = iterator.current;
-                subject.add(curr.toString().split(','));
-              }
+        SafeArea(
+          child: FutureBuilder<DocumentSnapshot>(
+            future: _schedule,
+            builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                var schedule = snapshot.data.data();
+                List<dynamic> subject = [];
 
-              return Container(
-                margin: EdgeInsets.only(
-                  left: MediaQuery.of(context).size.width * 0.1,
-                  top: 160,
-                  right: MediaQuery.of(context).size.width * 0.1,
-                ),
-                child: ListView.builder(
-                  itemCount: lessons.length,
-                  itemBuilder: (context, index) {
-                    try {
-                      return Container(
-                        child: ScheduleComponent(
-                          rightUp: "${subject[index][0]}",
-                          leftUp: "${subject[index][1]}",
-                          rightDown: "${subject[index][2]}",
-                          leftDown: "AM",
-                          rightUpSize: 25,
-                        ),
-                        margin: EdgeInsets.symmetric(vertical: 10),
-                      );
-                    } catch (e) {
-                      return Container(
-                        child: ScheduleComponent(
-                          rightUp: e.toString(),
-                          leftUp: "Error",
-                          rightDown: "",
-                          leftDown: "",
-                          rightUpSize: 15,
-                        ),
-                      );
-                    }
-                  },
-                ),
-              );
-            } else if (snapshot.connectionState == ConnectionState.none) {
-              return Text("No data");
-            }
-            return SpinKitDoubleBounce(color: Colors.red.withOpacity(0.3));
-          },
+                schedule.values.forEach((item) {
+                  subject.add(item.split(','));
+                });
+
+                return Container(
+                  margin: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width * 0.1,
+                    top: 160,
+                    right: MediaQuery.of(context).size.width * 0.1,
+                  ),
+                  child: ListView.builder(
+                    itemCount: schedule.length,
+                    itemBuilder: (context, index) {
+                      try {
+                        return Container(
+                          child: PillComponent(
+                            rightUp: subject[index][0],
+                            leftUp: subject[index][1],
+                            rightDown: subject[index][2],
+                            leftDown: "AM",
+                          ),
+                          margin: EdgeInsets.symmetric(vertical: 10),
+                        );
+                      } catch (e) {
+                        if (index < 1) {
+                          return Text(e.toString());
+                        } else {
+                          return null;
+                        }
+                      }
+                    },
+                  ),
+                );
+              } else if (snapshot.connectionState == ConnectionState.none) {
+                return Text("No data");
+              } else {
+                return SpinKitDoubleBounce(color: Colors.red.withOpacity(0.3));
+              }
+            },
+          ),
         ),
       ],
     );

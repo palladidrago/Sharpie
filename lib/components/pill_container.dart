@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
 
-class ScheduleComponent extends StatefulWidget {
-  ScheduleComponent(
-      {Key key,
-      this.rightUp,
-      this.leftUp,
-      this.rightDown,
-      this.leftDown,
-      this.rightUpSize})
-      : super(key: key);
+class PillComponent extends StatefulWidget {
+  PillComponent({
+    Key key,
+    @required this.rightUp,
+    @required this.leftUp,
+    this.rightDown,
+    this.leftDown,
+  }) : super(key: key);
 
   final String rightUp;
   final String leftUp;
   final String rightDown;
   final String leftDown;
-  final double rightUpSize;
 
   @override
-  _ScheduleComponentState createState() => _ScheduleComponentState();
+  _PillComponentState createState() => _PillComponentState();
 }
 
-class _ScheduleComponentState extends State<ScheduleComponent> {
+class _PillComponentState extends State<PillComponent> {
   //Contains the raw schedule
   @override
   Widget build(BuildContext context) {
@@ -66,7 +64,7 @@ class _ScheduleComponentState extends State<ScheduleComponent> {
               Text(
                 widget.rightUp,
                 style: TextStyle(
-                  fontSize: widget.rightUpSize,
+                  fontSize: 25,
                   fontWeight: FontWeight.w700,
                   color: Colors.blueGrey,
                 ),

@@ -63,7 +63,7 @@ class _GradesState extends State<Grades> {
                       : (avgGrades >= 55 ? Colors.grey : Colors.red),
                 ),
                 child: Text(
-                  "ממוצה: ${avgGrades.toString()}",
+                  "ממוצה: $avgGrades",
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 20,
@@ -83,7 +83,7 @@ class _GradesState extends State<Grades> {
         child: FutureBuilder<List<Grade>>(
           future: _grades,
           builder: (BuildContext context, AsyncSnapshot<List<Grade>> snapshot) {
-            if (snapshot.hasData) {
+            if (snapshot.connectionState == ConnectionState.done) {
               return ListView.builder(
                 padding: EdgeInsets.all(16.0),
                 itemCount: snapshot.data.length,
@@ -160,12 +160,10 @@ class _GradesState extends State<Grades> {
                   );
                 },
               );
-            } else if (snapshot.hasError) {
+            } else if (snapshot.connectionState == ConnectionState.none) {
               return Text("Error");
             } else {
-              return Center(
-                child: SpinKitDoubleBounce(color: Colors.blue.withOpacity(0.3)),
-              );
+              return SpinKitDoubleBounce(color: Colors.blue.withOpacity(0.3));
             }
           },
         ),
