@@ -6,8 +6,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:simple_mashovapi/simple_mashovapi.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import '../../components/pill_container.dart';
-import '../../services/database.dart';
+import '/components/pill_container.dart';
+import '/services/database.dart';
 
 // class Lesson {
 //   String desc;
@@ -136,12 +136,9 @@ class _ScheduleState extends State<Schedule> {
             future: _schedule,
             builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
-                var schedule = snapshot.data.data();
-                List<dynamic> subject = [];
-
-                schedule.values.forEach((item) {
-                  subject.add(item.split(','));
-                });
+                Map<String, dynamic> schedule = snapshot.data.data();
+                List<List<String>> subject =
+                    FirestoreDB.getDataAsList(schedule);
 
                 return Container(
                   margin: EdgeInsets.only(

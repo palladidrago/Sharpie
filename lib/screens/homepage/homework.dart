@@ -14,17 +14,13 @@ class _HomeworkState extends State<Homework> {
   static var homeworks = _homeworks();
   static Future<List<dynamic>> _homeworks() async {
     var homework = await _homework;
-    var _homeworks = {};
-    List<dynamic> homeworks = [];
+    Map<String, dynamic> homeworks = {};
 
     homework.forEach((data) {
-      _homeworks = data.data();
-    });
-    _homeworks.entries.forEach((item) {
-      homeworks.add(("${item.key}:${item.value}".split(':')));
+      homeworks = data.data();
     });
 
-    return homeworks;
+    return FirestoreDB.getDataAsList(homeworks);
   }
 
   @override
