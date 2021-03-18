@@ -62,7 +62,7 @@ class _GradesState extends State<Grades> {
                       : (avgGrades >= 55 ? Colors.grey : Colors.red),
                 ),
                 child: Text(
-                  "ממוצה: $avgGrades",
+                  "ממוצע: $avgGrades",
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 20,
